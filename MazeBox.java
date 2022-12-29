@@ -8,6 +8,7 @@ public abstract class MazeBox implements Vertex {
     protected final int id;
     protected final Maze maze;
 
+
     public MazeBox (int x, int y, Maze maze) {
         this.coordinateX = x;
         this.coordinateY = y;
@@ -57,8 +58,10 @@ public abstract class MazeBox implements Vertex {
 
     @Override
     public String getLabel() {
-        return Integer.toString(id);
+        return "Coordonnées (X,Y): " + "(" + Integer.toString(coordinateX) + "," + Integer.toString(coordinateY) + ")" + ". Type: " + getType();
     }
+
+    protected abstract char getType();
 
     private void getNeighbor(int x,int y, ArrayList<Vertex> list) {
         if(isNeighbor(x, y))

@@ -7,4 +7,9 @@ public class EmptyBox extends MazeBox{
     public boolean isEmpty () {
         return true;
     }
+
+    @Override
+    protected char getType () {
+        return 'E';
+    }
 }

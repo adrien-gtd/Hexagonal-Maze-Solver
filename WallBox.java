@@ -7,4 +7,9 @@ public final class WallBox extends MazeBox {
     public boolean isEmpty () {
         return false;
     }
+
+    @Override
+    protected final char getType () {
+        return 'W';
+    }
 }
