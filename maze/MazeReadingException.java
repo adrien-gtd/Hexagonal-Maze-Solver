@@ -1,3 +1,5 @@
+package maze;
+
 @SuppressWarnings("serial")
 public class MazeReadingException extends Exception{
     private final String name;

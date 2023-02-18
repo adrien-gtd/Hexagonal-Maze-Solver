@@ -1,3 +1,5 @@
+package maze;
+
 import graph.Vertex;
 import java.util.List;
 import java.util.ArrayList;
@@ -46,6 +48,7 @@ public abstract class MazeBox implements Vertex {
             parity = -1;
         else
             parity = 1;
+        
         getNeighbor(coordinateX, coordinateY + 1, neighborList);
         getNeighbor(coordinateX, coordinateY - 1, neighborList);
         getNeighbor(coordinateX + 1, coordinateY + parity, neighborList);

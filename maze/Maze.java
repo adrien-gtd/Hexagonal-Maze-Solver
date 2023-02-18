@@ -1,5 +1,6 @@
-import graph.*;
+package maze;
 
+import graph.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,54 @@ public final class Maze implements Graph{
         this.sizeY = sizeY;
     }
 
+    public List<String> toMazeString() {
+        ArrayList<String> mazeString = new ArrayList<String>();
+        String curr = "";
+        for (MazeBox[] line : grid) {
+            curr = "";
+            for (MazeBox box : line) {
+                switch (box.getType()) {
+                    case 'E':
+                        curr += " ";
+                        break;
+                    case 'W':
+                        curr += ".";
+                        break;
+                    case 'A':
+                        curr += "A";
+                        break;
+                    case 'D':
+                        curr += "D";
+                        break;
+                }
+            }
+            mazeString.add(curr);
+        }
+        return mazeString;
+    }
+
+
+    public MazeBox getEndBox() throws Exception{
+        for (MazeBox[] line : grid) {
+            for (MazeBox box : line) {
+                if (box.getType() == 'A')
+                return box;
+            }
+        }
+        throw new Exception("Pas de départ dans le labyronthe!");
+    }
+
+
+    public MazeBox getStartingBox() throws Exception{
+        for (MazeBox[] line : grid) {
+            for (MazeBox box : line) {
+                if (box.getType() == 'D')
+                return box;
+            }
+        }
+        throw new Exception("Pas d'arrivé dans le labyronthe!");
+    }
+
     public MazeBox[][] getGrid () {         //return the grid
         return grid;
     }
@@ -30,7 +79,7 @@ public final class Maze implements Graph{
     }
     
     public boolean isInMaze(int x, int y) {            //check if the coordonates of the vertex v are in the maze
-        if (x < sizeX && y < sizeY)
+        if (x < sizeX && y < sizeY && x >= 0 && y >= 0)
             return true;
         else
             return false;
@@ -39,12 +88,19 @@ public final class Maze implements Graph{
     public MazeBox getBox (int x, int y) {
         return grid[x][y];
     }
+
+    @Override
+    public int getDistance (Vertex origineVertex, Vertex finalVertex) {
+        if(origineVertex.getNextVertices().contains(finalVertex)) 
+            return 1;
+        return -1;
+    }
     
     @Override
     public List<Vertex> getVertices () {                //return all the vertices of the graph
         ArrayList<Vertex> VerticesList = new ArrayList<Vertex>();
         for (int i = 0; i < sizeX; i++) {
-            for (int j = 0; j < sizeY; i++) {
+            for (int j = 0; j < sizeY; j++) {
                 VerticesList.add(grid[i][j]);
             }
         }
