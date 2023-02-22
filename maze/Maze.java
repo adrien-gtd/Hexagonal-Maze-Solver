@@ -13,9 +13,29 @@ public final class Maze implements Graph{
 
     private MazeBox[][] grid;                       //contains the grid with all the boxes of the maze
 
-    public Maze (int sizeX, int sizeY) {            //Constructor
+    public Maze (int sizeX, int sizeY) {            //Constructor empty maze
         this.sizeX = sizeX;
         this.sizeY = sizeY;
+        newEmptyMaze ();
+    }
+
+    private void newEmptyMaze () {
+        grid = new MazeBox[sizeX][sizeY];
+        for (int i = 0; i < sizeX; i++) {
+            for(int j = 0; j < sizeY; j++) {
+                if (i == 0 && j == 0) 
+                    grid[i][j] = new StartingBox(i, j, this);
+                else if (i == sizeX - 1 && j == sizeY -1)
+                    grid[i][j] = new EndBox(i, j, this);
+                else {
+                    grid[i][j] = new EmptyBox(i, j, this);
+                }
+            }
+        }
+    }
+
+    public Maze (String fileName) throws Exception {        //contructor maze from a file
+        initFromTextFile(fileName);
     }
 
     public List<String> toMazeString() {
@@ -52,7 +72,7 @@ public final class Maze implements Graph{
                 return box;
             }
         }
-        throw new Exception("Pas de départ dans le labyronthe!");
+        throw new Exception("Pas d'arrivé dans le labyronthe!");
     }
 
 
@@ -63,7 +83,7 @@ public final class Maze implements Graph{
                 return box;
             }
         }
-        throw new Exception("Pas d'arrivé dans le labyronthe!");
+        throw new Exception("Pas de départ dans le labyronthe!");
     }
 
     public MazeBox[][] getGrid () {         //return the grid
@@ -168,7 +188,7 @@ public final class Maze implements Graph{
                 }
                 textToSave.add(sb.toString());
             }
-            Files.write(Paths.get(fileName), textToSave, StandardCharsets.UTF_8, StandardOpenOption.CREATE);        //copying all the lines directly into the file 'fileName' creating a new file even if 'fileName' already exists
+            Files.write(Paths.get(fileName), textToSave, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);        //copying all the lines directly into the file 'fileName' creating a new file even if 'fileName' already exists
         }
 
         catch (IOException ex){                 //opening error 

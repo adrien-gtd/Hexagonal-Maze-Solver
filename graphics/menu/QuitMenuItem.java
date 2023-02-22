@@ -1,17 +1,23 @@
 package graphics.menu;
 
 import javax.swing.* ;
-import graphics.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
-public class QuitMenuItem extends JMenuItem {
+public class QuitMenuItem extends JMenuItem implements ActionListener {
 
-   private final LabyrinthWindow window ;
-
-   public QuitMenuItem(LabyrinthWindow window) {
+   public QuitMenuItem() {
       super("Quit") ; // Text of menu item
+      this.addActionListener(this);
+   }
 
-      this.window = window;
+   @Override
+   public void actionPerformed(ActionEvent e) {
+      if(e.getSource() == this) {
+         System.exit(0);
+      }
+      
    }
 }
 

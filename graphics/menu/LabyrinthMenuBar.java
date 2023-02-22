@@ -10,7 +10,6 @@ public class LabyrinthMenuBar extends JMenuBar {
 	
    public LabyrinthMenuBar(LabyrinthWindow window) {
       super() ;
-		
 
       add(fileMenu = new FileMenu(window));
    }

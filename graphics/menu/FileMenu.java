@@ -16,8 +16,8 @@ public class FileMenu extends JMenu {
 
       add(newMenuItem = new NewMenuItem(window));
       add(loadMenuItem = new LoadMenuItem(window));
-      add(saveMenuItem = new SaveMenuItem(window));
       add(saveAsMenuItem = new SaveAsMenuItem(window));
-      add(quitMenuItem = new QuitMenuItem(window));
+      add(saveMenuItem = new SaveMenuItem(window, saveAsMenuItem));
+      add(quitMenuItem = new QuitMenuItem());
    }
 }

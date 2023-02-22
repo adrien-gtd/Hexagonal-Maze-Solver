@@ -1,15 +1,19 @@
 package graphics.content;
 
 import javax.swing.JPanel;
+import graph.ShortestPaths;
+import graph.Vertex;
 import graphics.*;
 import java.awt.*;
 import maze.*;
 import java.lang.Math;
+import java.util.List;
 
 @SuppressWarnings("serial")
 public class LabyrinthPanel extends JPanel{
     private final LabyrinthWindow window;
     private Maze maze;
+    private List<Vertex> path;
     private int hexagonSize;
     private int panelSizeX;
     private int panelSizeY;
@@ -37,6 +41,7 @@ public class LabyrinthPanel extends JPanel{
         panelSizeY = (int) this.getSize().getHeight();
         hexagonSize = setHexagonSize();
         offset = 2 * hexagonSize;
+        path = window.getPath();
         repaint();
     }
 
@@ -74,19 +79,23 @@ public class LabyrinthPanel extends JPanel{
 
     private void drawHexagon (int x, int y, Graphics g, MazeBox box) {
         Hexagon hexagon = new Hexagon(x + offset, y + offset, hexagonSize);
-        switch (box.getType()) {
-            case 'E':
-                g.setColor(emptyColor);
-                break;
-            case 'W':
-                g.setColor(wallColor);
-                break;
-            case 'A':
-                g.setColor(endColor);
-                break;
-            default:
-                g.setColor(startColor);
-                break;
+        if (path != null && path.contains(box) && box.getType() != 'A' && box.getType() != 'D')                 //if the path is on display mode, path != null, the maze box takes a special color
+            g.setColor(pathColor);
+        else {                                                  //if the box is not on the path or path is not displayed, usual behavior 
+            switch (box.getType()) {
+                case 'E':
+                    g.setColor(emptyColor);
+                    break;
+                case 'W':
+                    g.setColor(wallColor);
+                    break;
+                case 'A':
+                    g.setColor(endColor);
+                    break;
+                default:
+                    g.setColor(startColor);
+                    break;
+            }
         }
         
         g.fillPolygon(hexagon.getPolygon());
