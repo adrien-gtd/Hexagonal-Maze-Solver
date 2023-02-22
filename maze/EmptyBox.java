@@ -11,7 +11,7 @@ public class EmptyBox extends MazeBox{
     }
 
     @Override
-    protected char getType () {
+    public char getType () {
         return 'E';
     }
 }

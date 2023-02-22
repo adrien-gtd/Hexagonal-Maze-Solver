@@ -6,7 +6,7 @@ public final class EndBox extends EmptyBox {
     }
 
     @Override
-    protected final char getType () {
+    public final char getType () {
         return 'A';
     }
 }

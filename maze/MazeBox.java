@@ -64,7 +64,7 @@ public abstract class MazeBox implements Vertex {
         return "Coordonnées (X,Y): " + "(" + Integer.toString(coordinateX) + "," + Integer.toString(coordinateY) + ")" + ". Type: " + getType();
     }
 
-    protected abstract char getType();
+    public abstract char getType();
 
     private void getNeighbor(int x,int y, ArrayList<Vertex> list) {
         if(isNeighbor(x, y))

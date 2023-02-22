@@ -7,7 +7,7 @@ public final class StartingBox extends EmptyBox {
     }
 
     @Override
-    protected final char getType () {
+    public final char getType () {
         return 'D';
     }
 }

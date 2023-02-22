@@ -1,13 +1,28 @@
 import maze.*;
-
+import graph.*;
+import graphics.*;
 import java.util.Iterator;
 
-import graph.*;
+
+
 
 public class MainTest {
     public static void main(String[] args) {
         Maze maze = new Maze(0, 0);
-        testDisjtrat(maze);
+        //testDisjtrat(maze);
+        testGraphics(maze);        
+
+    }
+
+    private static void testGraphics (Maze maze) {
+        try {
+            maze.initFromTextFile("./data/labyrinthe.maze");
+            new LabyrinthWindow(maze);
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println(ex.getMessage());
+        }
     }
     
 

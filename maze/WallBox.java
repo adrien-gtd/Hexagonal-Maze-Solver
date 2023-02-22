@@ -11,7 +11,7 @@ public final class WallBox extends MazeBox {
     }
 
     @Override
-    protected final char getType () {
+    public final char getType () {
         return 'W';
     }
 }
