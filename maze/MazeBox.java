@@ -74,7 +74,7 @@ public abstract class MazeBox implements Vertex {
  
     private boolean isNeighbor (int x, int y) {
         if (maze.isInMaze(x, y))
-            if (maze.getBox(x, y).isEmpty())
+            if (maze.getBox(x, y).isEmptyBox() || maze.getBox(x, y).isEndBox() || maze.getBox(x, y).isStartBox())
                 return true;
 
         return false;
@@ -82,5 +82,9 @@ public abstract class MazeBox implements Vertex {
 
     
 
-    public abstract boolean isEmpty();
+    public abstract boolean isEmptyBox();
+    public abstract boolean isWallBox();
+    public abstract boolean isStartBox();
+    public abstract boolean isEndBox();
+
 }

@@ -10,4 +10,19 @@ public final class StartingBox extends EmptyBox {
     public final char getType () {
         return 'D';
     }
+
+    @Override
+    public boolean isStartBox() {
+        return true;
+    }
+
+    @Override
+    public boolean isEndBox() {
+        return false;
+    }
+    
+    @Override
+    public boolean isEmptyBox() {
+        return false;
+    }
 }

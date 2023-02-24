@@ -5,13 +5,29 @@ public class EmptyBox extends MazeBox{
         super(x, y, maze);
     }
 
-    @Override
-    public boolean isEmpty () {
-        return true;
-    }
 
     @Override
     public char getType () {
         return 'E';
+    }
+
+    @Override
+    public boolean isEmptyBox() {
+        return true;
+    }
+
+    @Override
+    public boolean isWallBox() {
+        return false;
+    }
+
+    @Override
+    public boolean isStartBox() {
+        return false;
+    }
+
+    @Override
+    public boolean isEndBox() {
+        return false;
     }
 }

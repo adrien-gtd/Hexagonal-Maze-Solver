@@ -25,8 +25,10 @@ public final class Maze implements Graph{
             for(int j = 0; j < sizeY; j++) {
                 if (i == 0 && j == 0) 
                     grid[i][j] = new StartingBox(i, j, this);
+
                 else if (i == sizeX - 1 && j == sizeY -1)
                     grid[i][j] = new EndBox(i, j, this);
+
                 else {
                     grid[i][j] = new EmptyBox(i, j, this);
                 }
@@ -44,20 +46,14 @@ public final class Maze implements Graph{
         for (MazeBox[] line : grid) {
             curr = "";
             for (MazeBox box : line) {
-                switch (box.getType()) {
-                    case 'E':
-                        curr += " ";
-                        break;
-                    case 'W':
-                        curr += ".";
-                        break;
-                    case 'A':
-                        curr += "A";
-                        break;
-                    case 'D':
-                        curr += "D";
-                        break;
-                }
+                if(box.isWallBox())
+                    curr += ".";
+                if(box.isEndBox())
+                    curr += "A";
+                if(box.isStartBox())
+                    curr += "D";
+                if(box.isEmptyBox())
+                    curr += " ";
             }
             mazeString.add(curr);
         }
@@ -68,7 +64,7 @@ public final class Maze implements Graph{
     public MazeBox getEndBox() throws Exception{
         for (MazeBox[] line : grid) {
             for (MazeBox box : line) {
-                if (box.getType() == 'A')
+                if (box.isEndBox())
                 return box;
             }
         }
@@ -79,7 +75,7 @@ public final class Maze implements Graph{
     public MazeBox getStartingBox() throws Exception{
         for (MazeBox[] line : grid) {
             for (MazeBox box : line) {
-                if (box.getType() == 'D')
+                if (box.isStartBox())
                 return box;
             }
         }

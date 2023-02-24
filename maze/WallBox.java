@@ -6,12 +6,26 @@ public final class WallBox extends MazeBox {
     }
 
     @Override
-    public boolean isEmpty () {
+    public final char getType () {
+        return 'W';
+    }
+
+    public boolean isEmptyBox() {
         return false;
     }
 
     @Override
-    public final char getType () {
-        return 'W';
+    public boolean isWallBox() {
+        return true;
+    }
+
+    @Override
+    public boolean isStartBox() {
+        return false;
+    }
+
+    @Override
+    public boolean isEndBox() {
+        return false;
     }
 }
