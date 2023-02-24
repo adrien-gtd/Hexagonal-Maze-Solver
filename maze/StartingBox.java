@@ -1,6 +1,9 @@
 package maze;
 
+import java.awt.Color;
+
 public final class StartingBox extends EmptyBox {
+    private final Color color = Color.GREEN;
 
     public StartingBox (int x, int y, Maze maze) {
         super(x, y, maze);
@@ -24,5 +27,10 @@ public final class StartingBox extends EmptyBox {
     @Override
     public boolean isEmptyBox() {
         return false;
+    }
+
+    @Override
+    public Color getColor() {
+        return color;
     }
 }
