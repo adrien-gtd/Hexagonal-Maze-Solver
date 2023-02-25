@@ -66,7 +66,6 @@ public class HexagonList {
     public void clicked(Point p, LabyrinthModel model) {
         for(Hexagon hexagon : hexagonList) {
             if(hexagon.getPolygon().contains(p)) {
-                System.out.println("ddddddd");
                 int id = hexagonList.indexOf(hexagon);
                 MazeBox box = maze.getBox(id);
                 if(box.isEmptyBox()) {

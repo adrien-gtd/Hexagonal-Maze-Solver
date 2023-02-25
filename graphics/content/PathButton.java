@@ -36,6 +36,9 @@ public class PathButton extends JButton implements ActionListener {
                     model.setPath(path);
                     togglePath = true;
                 }
+                catch (NullPointerException ex) {
+                    window.error("Error generating path, NullPointerException (PathButton.java) : no path found!");
+                }
                 catch (Exception ex){
                     window.error("Error generating path (PathButton.java) : " + ex.getMessage());
                 }
