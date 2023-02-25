@@ -1,73 +1,49 @@
 package graphics;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
-import graph.Vertex;
+
 import graphics.menu.*;
+import graphics.model.LabyrinthModel;
 import graphics.content.*;
 import maze.*;
-import java.awt.event.*;
-import java.util.List;
 
 @SuppressWarnings("serial")
-public class LabyrinthWindow extends JFrame {
+public class LabyrinthWindow extends JFrame implements ChangeListener{
     private final LabyrinthMenuBar menuBar;
     private final WindowPanel windowPanel;
-    private Maze maze;
-    private List<Vertex> path;
-    private String currFileName;
+    private LabyrinthModel model;
 
 
     public LabyrinthWindow (Maze maze) {                        //change the param to void when the application is done
         super ("Labyrinth Window");
-        this.maze = maze;
-        this.getRootPane().addComponentListener(new ComponentAdapter() {            //update every resize
-            public void componentResized(ComponentEvent e) {
-                update();
-            }
-        });
-        this.currFileName = null;
-        this.path = null;
+        setLabyrinthModel(new LabyrinthModel(maze));
         setJMenuBar(menuBar = new LabyrinthMenuBar(this));
         add(windowPanel = new WindowPanel(this));
-
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        pack();
         setVisible(true);
+        pack();
     }
 
-    public void setMaze(Maze maze) {
-        this.maze = maze;
-        update();
+    public void setLabyrinthModel(LabyrinthModel model) {
+        this.model = model;
+        model.addObserver(this);
     }
 
-    public Maze getMaze() {
-        return maze;
-    } 
+    public LabyrinthModel getLabyrinthModel () {
+        return model;
+    }
 
-    public void update(){
+    public void error(String errorMessage) {                    //print the error on the gui
+        System.out.println(errorMessage); 
+        JOptionPane.showMessageDialog(this, errorMessage, "Error message", JOptionPane.ERROR_MESSAGE);         
+    }
+
+    @Override
+    public void stateChanged(ChangeEvent e) {
         menuBar.update();
         windowPanel.update();
     }
-
-    public void setPath (List<Vertex> path) {
-        this.path = path;
-        update();
-    }
-
-    public List<Vertex> getPath () {
-        return path;
-    }
-
-    public void error(String errorMessage) {                    //print the error on the gui TODO
-        System.out.println(errorMessage);           
-    }
-
-    public String getCurrFileName() {
-        return currFileName;
-    }
-
-    public void setCurrFileName(String newFileName) {
-        this.currFileName = newFileName;
-    } 
 }

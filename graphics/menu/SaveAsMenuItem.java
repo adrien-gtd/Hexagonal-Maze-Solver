@@ -4,6 +4,8 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import graphics.*;
+import graphics.model.LabyrinthModel;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -13,10 +15,12 @@ import java.io.File;
 public class SaveAsMenuItem extends JMenuItem implements ActionListener {
 
     private final LabyrinthWindow window;
+    private final LabyrinthModel model;
 
     public SaveAsMenuItem(LabyrinthWindow window) {
         super("Save as") ; // Text of menu item
         addActionListener(this);
+        model = window.getLabyrinthModel();
         this.window = window;
    }
 
@@ -36,8 +40,8 @@ public class SaveAsMenuItem extends JMenuItem implements ActionListener {
                 }
 
                 try {
-                    window.getMaze().saveToTextFile(fileName);
-                    window.setCurrFileName(fileName);
+                    model.saveMaze(fileName);
+                    model.setCurrFileName(fileName);
                 }
                 catch (Exception exception){
                     window.error("Error save as menu : " + exception.getMessage());

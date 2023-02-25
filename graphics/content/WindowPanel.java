@@ -20,6 +20,8 @@ public class WindowPanel extends JPanel {
 
     public void update() {
         labyrinthPanel.update();
-        controlPanel.update();
+
     }
+
+    
 }

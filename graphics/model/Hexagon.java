@@ -1,17 +1,23 @@
-package graphics.content;
+package graphics.model;
 
 import java.awt.*;
 
+
 public class Hexagon {
+    private final Color pathColor = Color.CYAN;
+    private final Color emptyColor = Color.GRAY;
     private final int x;
     private final int y;
     private final int size;
     private final Polygon polygon;
+    private Color color;
+    
 
-    public Hexagon (int x, int y, int size) {
+    public Hexagon (int x, int y, int size, Color color) {
         this.x = x;
         this.y = y;
         this.size = size;
+        this.color = color;
         this.polygon = createHexagon();
     }
 
@@ -43,6 +49,24 @@ public class Hexagon {
 
     public int getSize() {
         return size;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    } 
+
+    public void setPathColor () {
+        if (color == emptyColor)
+            color = pathColor;
+    }
+
+    public void resetPathColor () {
+        if(color == pathColor) 
+            color = emptyColor;
     }
 }
 

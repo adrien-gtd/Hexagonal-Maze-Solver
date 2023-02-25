@@ -19,9 +19,8 @@ public class ControlPanel extends JPanel{
         add(cursorButton = new CursorButton(window));
         add(wallButton = new WallButton(window));
         add(emptyButton = new EmptyButton(window));
+
     }
 
-    public void update() {
-        return;
-    }
+
 }

@@ -2,6 +2,7 @@ package graphics.content;
 
 import javax.swing.JButton;
 import graphics.LabyrinthWindow;
+import graphics.model.LabyrinthModel;
 import maze.Maze;
 import graph.*;
 import java.awt.event.ActionEvent;
@@ -12,31 +13,34 @@ import java.util.List;
 public class PathButton extends JButton implements ActionListener {
     private final LabyrinthWindow window;
     private Boolean togglePath;
+    private final LabyrinthModel model;
+
 
     public PathButton (LabyrinthWindow window) {
         super("Generate Path"); // Change button text
         togglePath = false;
         this.addActionListener(this);
+        model = window.getLabyrinthModel();
         this.window = window;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Maze maze = window.getMaze();
+        Maze maze = model.getMaze();
         List<Vertex> path; 
         if (e.getSource() == this) {                        //if path not displayed and the button is pressed, we display it
             if(!togglePath) {
                 try {
                     path = Dijkstra.dijkstra(maze,maze.getStartingBox(), maze.getEndBox()).getShortestPath(maze.getEndBox(), maze.getStartingBox());
-                    window.setPath(path);
+                    model.setPath(path);
                     togglePath = true;
                 }
                 catch (Exception ex){
-                    System.out.println(ex.getMessage());
+                    window.error("Error generating path (PathButton.java) : " + ex.getMessage());
                 }
             }
             else {                                              //if not we remove it
-                window.setPath(null);
+                model.setPath(null);
                 togglePath = false;
             }
         }

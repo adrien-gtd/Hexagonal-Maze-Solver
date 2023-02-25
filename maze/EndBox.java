@@ -3,7 +3,7 @@ package maze;
 import java.awt.Color;
 
 public final class EndBox extends EmptyBox {
-    private final Color color = Color.RED;
+    private static final Color color = Color.RED;
 
     public EndBox (int x, int y, Maze maze) {
         super (x, y, maze);

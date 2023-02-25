@@ -2,6 +2,7 @@ package graphics.menu;
 
 import javax.swing.*;
 import graphics.*;
+import graphics.model.LabyrinthModel;
 import maze.Maze;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
@@ -12,10 +13,13 @@ import java.io.File;
 public class LoadMenuItem extends JMenuItem implements ActionListener {
 
     private final LabyrinthWindow window;
+    private final LabyrinthModel model;
+
 
     public LoadMenuItem(LabyrinthWindow window) {
         super("Load") ; // Text of menu item
         addActionListener(this);
+        model = window.getLabyrinthModel();
         this.window = window;
    }
 
@@ -30,8 +34,8 @@ public class LoadMenuItem extends JMenuItem implements ActionListener {
             if(response == JFileChooser.APPROVE_OPTION) {
                 try {
                     String filePath = fileChooser.getSelectedFile().getAbsolutePath();
-                    window.setMaze(new Maze(filePath));
-                    window.setCurrFileName(filePath);
+                    model.setMaze(new Maze(filePath));
+                    model.setCurrFileName(filePath);
                 }
                 catch (Exception exception) {
                     window.error("Error loadind your file : " + exception.getMessage());

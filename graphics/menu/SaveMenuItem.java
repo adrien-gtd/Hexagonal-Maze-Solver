@@ -2,6 +2,8 @@ package graphics.menu;
 
 import javax.swing.*;
 import graphics.*;
+import graphics.model.LabyrinthModel;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,20 +12,22 @@ public class SaveMenuItem extends JMenuItem implements ActionListener {
 
     private final LabyrinthWindow window;
     private final SaveAsMenuItem saveAs;
+    private final LabyrinthModel model;
 
     public SaveMenuItem(LabyrinthWindow window, SaveAsMenuItem saveAs) {
         super("Save") ; // Text of menu item
         addActionListener(this);
         this.window = window;
+        model = window.getLabyrinthModel();
         this.saveAs = saveAs;
    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this) {
-            if (window.getCurrFileName() != null) {
+            if (model.getCurrFileName() != null) {
                 try {
-                    window.getMaze().saveToTextFile(window.getCurrFileName());
+                    model.saveMaze(model.getCurrFileName());
                 }
                 catch (Exception exception){
                     window.error("Error save menu : " + exception.getMessage());
