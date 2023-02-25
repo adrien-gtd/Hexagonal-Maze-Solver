@@ -26,7 +26,7 @@ public class MainTest {
     }
     
 
-
+    @SuppressWarnings("unused")
     private static void testDisjtrat (Maze maze) {
         try {
             maze.initFromTextFile("./data/labyrinthe.maze");            //open the lab file

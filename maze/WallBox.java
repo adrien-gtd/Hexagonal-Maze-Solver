@@ -3,7 +3,7 @@ package maze;
 import java.awt.Color;
 
 public final class WallBox extends MazeBox {
-    private final Color color = Color.BLACK;
+    public static final Color color = Color.BLACK;
 
     public WallBox (int x, int y, Maze maze) {
         super(x,y, maze);

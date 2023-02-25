@@ -19,9 +19,13 @@ public class LabyrinthModel {
     private double aspectRatio;
     private List<Vertex> path;
     private String currFileName;
+    private int currsorType;
+    public static int CURRSOR = 0;
+    public static int TOGGLE_WALL = 1;
 
     public LabyrinthModel (Maze maze) {
         setMaze(maze);
+        currsorType = CURRSOR;
     }
 
     // Setters getters
@@ -61,6 +65,10 @@ public class LabyrinthModel {
     public String getCurrFileName() {
         return currFileName;
     }
+
+    public void setCurrsorType(int currsorType) {
+        this.currsorType = currsorType;
+    }
     //fin des getters setters
 
     public void saveMaze (String s) throws Exception {
@@ -80,8 +88,10 @@ public class LabyrinthModel {
 	}
     
     public void clicked(Point p) {
-        hexagonList.clicked(p);
-        stateChanges();
+        if(!(currsorType == CURRSOR) ) {
+            hexagonList.clicked(p, this);
+            stateChanges();
+        }
     }
 
     private void updateRatio() {
@@ -92,4 +102,6 @@ public class LabyrinthModel {
         double width = Math.sqrt(3) * (gridSizeY + 1) + 4;
         aspectRatio = height / width;
     }
+
+
 }

@@ -3,7 +3,7 @@ package maze;
 import graph.Vertex;
 import java.util.List;
 import java.util.ArrayList;
-import java.awt.*;
+import java.awt.Color;
 
 public abstract class MazeBox implements Vertex {
     protected final int coordinateX;
@@ -89,5 +89,4 @@ public abstract class MazeBox implements Vertex {
     public abstract boolean isEndBox();
 
     public abstract Color getColor();
-
 }

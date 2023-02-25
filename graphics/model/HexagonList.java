@@ -12,8 +12,10 @@ import graph.Vertex;
 public class HexagonList {
     private int hexagonSize = 20;
     private List<Hexagon> hexagonList = new ArrayList<Hexagon>();
+    private final Maze maze;
 
     public HexagonList (Maze maze) {
+        this.maze = maze;
         creatHexagonList(maze);
     }
 
@@ -61,10 +63,24 @@ public class HexagonList {
         }
     }
 
-    public void clicked(Point p) {
+    public void clicked(Point p, LabyrinthModel model) {
         for(Hexagon hexagon : hexagonList) {
             if(hexagon.getPolygon().contains(p)) {
-                System.out.println(hexagonList.indexOf(hexagon));
+                System.out.println("ddddddd");
+                int id = hexagonList.indexOf(hexagon);
+                MazeBox box = maze.getBox(id);
+                if(box.isEmptyBox()) {
+                    maze.setWallBox(id);
+                    hexagon.setColor(WallBox.color);
+                    model.setPath(null);
+                    return;
+                }
+                if(box.isWallBox()) {
+                    maze.setEmptyBox(id);
+                    hexagon.setColor(EmptyBox.color);
+                    model.setPath(null);
+                    return;
+                }
             }
         } 
     }

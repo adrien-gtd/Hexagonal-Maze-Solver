@@ -105,6 +105,12 @@ public final class Maze implements Graph{
         return grid[x][y];
     }
 
+    public MazeBox getBox (int id) {
+        int x = id / sizeY;
+        int y = id % sizeY;
+        return grid[x][y];
+    }
+
     @Override
     public int getDistance (Vertex origineVertex, Vertex finalVertex) {
         if(origineVertex.getNextVertices().contains(finalVertex)) 
@@ -192,6 +198,30 @@ public final class Maze implements Graph{
         }
     }
 
+    public void setEmptyBox(int id) {
+        int x = id / sizeY;
+        int y = id % sizeY;
+        this.grid[x][y] = new EmptyBox(x, y, this);
+        return;
+    }
+
+    public void setWallBox(int id){
+        int x = id / sizeY;
+        int y = id % sizeY;
+        this.grid[x][y] = new WallBox(x, y, this);
+        return;
+    }
+
+    public void swapBoxes(int id1, int id2) {
+        int x1 = id1 / sizeY;
+        int y1 = id1 % sizeY;
+        int x2 = id2 / sizeY;
+        int y2 = id2 % sizeY;
+        MazeBox temp = grid[x1][y1];
+        grid[x1][y1] = grid[x2][y2];;
+        grid[x1][y1] = temp;
+        return;
+    }
 
 }
 

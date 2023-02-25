@@ -3,7 +3,7 @@ package maze;
 import java.awt.Color;
 
 public final class StartingBox extends EmptyBox {
-    private final Color color = Color.GREEN;
+    public static final Color color = Color.GREEN;
 
     public StartingBox (int x, int y, Maze maze) {
         super(x, y, maze);

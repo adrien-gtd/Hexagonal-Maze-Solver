@@ -53,7 +53,7 @@ public class LabyrinthPanel extends JPanel implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        model.clicked(e.getLocationOnScreen());
+        model.clicked(e.getPoint());
     }
 
     @Override

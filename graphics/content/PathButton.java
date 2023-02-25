@@ -29,6 +29,7 @@ public class PathButton extends JButton implements ActionListener {
         Maze maze = model.getMaze();
         List<Vertex> path; 
         if (e.getSource() == this) {                        //if path not displayed and the button is pressed, we display it
+            togglePath = !(model.getPath() == null);
             if(!togglePath) {
                 try {
                     path = Dijkstra.dijkstra(maze,maze.getStartingBox(), maze.getEndBox()).getShortestPath(maze.getEndBox(), maze.getStartingBox());

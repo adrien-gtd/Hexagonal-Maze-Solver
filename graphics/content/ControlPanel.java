@@ -9,17 +9,14 @@ public class ControlPanel extends JPanel{
     private final LabyrinthWindow window;
     private final PathButton pathButton;
     private final CursorButton cursorButton;
-    private final WallButton wallButton;
-    private final EmptyButton emptyButton;
+    private final ToggleWallButton toggleWallButton;
 
     public ControlPanel (LabyrinthWindow window) {
         this.window = window;
         setLayout(new GridLayout(1,4));
         add(pathButton = new PathButton(window));
         add(cursorButton = new CursorButton(window));
-        add(wallButton = new WallButton(window));
-        add(emptyButton = new EmptyButton(window));
-
+        add(toggleWallButton = new ToggleWallButton(window));
     }
 
 
