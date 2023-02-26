@@ -38,7 +38,6 @@ public class HexagonList {
             else { 
                 currX = sideHexagonSize;
             }
-
             for (MazeBox box : line) {
                 hexagonList.add(new Hexagon(sideHexagonSize + currX, currY, hexagonSize, box.getColor()));
                 currX += sideHexagonSize * 2;            //leave no gap between the hexagons
@@ -92,7 +91,7 @@ public class HexagonList {
         return null;
     }
 
-    public boolean dropped(Point p, boolean isStart) {
+    public boolean dropped(Point p, boolean isStart, LabyrinthModel model) {
         for(Hexagon hexagon : hexagonList) {
             if(hexagon.getPolygon().contains(p)) {
                 try {
@@ -100,6 +99,7 @@ public class HexagonList {
                         swapHexagon(hexagonList.indexOf(hexagon), maze.getStartingBox().getId());
                     else
                         swapHexagon(hexagonList.indexOf(hexagon), maze.getEndBox().getId());
+                    model.setPath(null);
                     return true;
                 }
                 catch (Exception ex) {}
@@ -109,9 +109,11 @@ public class HexagonList {
     }
 
     private void swapHexagon(int id1, int id2) {
-        Color temp = hexagonList.get(id2).getColor();
-        hexagonList.get(id2).setColor(hexagonList.get(id1).getColor());
-        hexagonList.get(id1).setColor(temp);
+        Color temp = hexagonList.get(id1).getColor();
+        if (temp == WallBox.color)
+            temp = EmptyBox.color;
+        hexagonList.get(id1).setColor(hexagonList.get(id2).getColor());
+        hexagonList.get(id2).setColor(temp);
         maze.swapBoxes(id1, id2);
     }
 

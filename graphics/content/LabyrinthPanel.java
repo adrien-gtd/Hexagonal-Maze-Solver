@@ -41,12 +41,23 @@ public class LabyrinthPanel extends JPanel implements MouseInputListener {
         super.paintComponent(graphics);
         drawGrid(graphics);
         if (isDraggedEnd || isDraggedStart) {
-            drawHexagon(new Hexagon(
+            drawHexagon(
+                new Hexagon(
+                    hexagonDragged.getX(),
+                    hexagonDragged.getY(),
+                    hexagonDragged.getSize(),
+                    Color.YELLOW
+                ), 
+                graphics);
+
+            drawHexagon(
+                new Hexagon(
                     hexagonCenter.x, 
                     hexagonCenter.y, 
                     hexagonDragged.getSize(), 
                     hexagonDragged.getColor()
-                ), graphics);  
+                ), 
+                graphics);  
         } 
 
     }
@@ -113,4 +124,3 @@ public class LabyrinthPanel extends JPanel implements MouseInputListener {
     @Override
     public void mouseMoved(MouseEvent e) {}
 }
-    

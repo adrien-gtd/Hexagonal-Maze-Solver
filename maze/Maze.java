@@ -237,7 +237,7 @@ public final class Maze implements Graph{
         if(temp.isStartBox())
             grid[x2][y2] = new StartingBox(x2,y2,this);
         if(temp.isWallBox())
-            grid[x2][y2] = new WallBox(x2,y2,this);
+            grid[x2][y2] = new EmptyBox(x2,y2,this);
         return;
     }
 

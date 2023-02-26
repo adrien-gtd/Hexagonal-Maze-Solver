@@ -107,7 +107,7 @@ public class LabyrinthModel {
 
 
     public void dropped(Point p, boolean isStart) {
-        if(hexagonList.dropped(p, isStart)) {
+        if(hexagonList.dropped(p, isStart, this)) {
             stateChanges();
         }
     }
