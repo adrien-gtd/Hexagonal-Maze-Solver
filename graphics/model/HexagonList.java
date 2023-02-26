@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import java.awt.Point;
+import java.awt.Color;
 
 import maze.*;
 import maze.MazeBox;
@@ -47,7 +48,7 @@ public class HexagonList {
         }
     }
 
-    public void updatePath (List<Vertex> path, int width) {
+    public void updatePath (List<Vertex> path) {
         if(path == null) 
             removePath();
         else {
@@ -63,24 +64,56 @@ public class HexagonList {
         }
     }
 
-    public void clicked(Point p, LabyrinthModel model) {
+    public Hexagon clicked(Point p, LabyrinthModel model) {
         for(Hexagon hexagon : hexagonList) {
             if(hexagon.getPolygon().contains(p)) {
                 int id = hexagonList.indexOf(hexagon);
                 MazeBox box = maze.getBox(id);
                 if(box.isEmptyBox()) {
-                    maze.setWallBox(id);
                     hexagon.setColor(WallBox.color);
+                    maze.setWallBox(id);
                     model.setPath(null);
-                    return;
+                    return hexagon;
+                }
+                if(box.isStartBox()) {
+                    return hexagon;
+                }
+                if(box.isEndBox()) {
+                    return hexagon;
                 }
                 if(box.isWallBox()) {
                     maze.setEmptyBox(id);
                     hexagon.setColor(EmptyBox.color);
                     model.setPath(null);
-                    return;
+                    return hexagon;
                 }
             }
         } 
+        return null;
     }
+
+    public boolean dropped(Point p, boolean isStart) {
+        for(Hexagon hexagon : hexagonList) {
+            if(hexagon.getPolygon().contains(p)) {
+                try {
+                    if(isStart) 
+                        swapHexagon(hexagonList.indexOf(hexagon), maze.getStartingBox().getId());
+                    else
+                        swapHexagon(hexagonList.indexOf(hexagon), maze.getEndBox().getId());
+                    return true;
+                }
+                catch (Exception ex) {}
+            }
+        }
+        return false;
+    }
+
+    private void swapHexagon(int id1, int id2) {
+        Color temp = hexagonList.get(id2).getColor();
+        hexagonList.get(id2).setColor(hexagonList.get(id1).getColor());
+        hexagonList.get(id1).setColor(temp);
+        maze.swapBoxes(id1, id2);
+    }
+
+
 }

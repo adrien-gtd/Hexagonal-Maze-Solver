@@ -50,7 +50,7 @@ public class LabyrinthModel {
 
     public void setPath (List<Vertex> path) {
         this.path = path;
-        this.hexagonList.updatePath(path, maze.getSizeY());
+        this.hexagonList.updatePath(path);
         stateChanges();
     }
 
@@ -87,11 +87,13 @@ public class LabyrinthModel {
 		}
 	}
     
-    public void clicked(Point p) {
+    public Hexagon clicked(Point p) {
         if(!(currsorType == CURRSOR) ) {
-            hexagonList.clicked(p, this);
+            Hexagon answer = hexagonList.clicked(p, this);
             stateChanges();
+            return answer;
         }
+        return null;
     }
 
     private void updateRatio() {
@@ -103,5 +105,11 @@ public class LabyrinthModel {
         aspectRatio = height / width;
     }
 
+
+    public void dropped(Point p, boolean isStart) {
+        if(hexagonList.dropped(p, isStart)) {
+            stateChanges();
+        }
+    }
 
 }

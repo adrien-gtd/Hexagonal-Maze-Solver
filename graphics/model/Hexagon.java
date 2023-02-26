@@ -2,6 +2,9 @@ package graphics.model;
 
 import java.awt.*;
 
+import maze.EndBox;
+import maze.StartingBox;
+
 
 public class Hexagon {
     private final Color pathColor = Color.CYAN;
@@ -67,6 +70,14 @@ public class Hexagon {
     public void resetPathColor () {
         if(color == pathColor) 
             color = emptyColor;
+    }
+
+    public boolean isStart() {
+        return color == StartingBox.color;
+    }
+
+    public boolean isEnd() {
+        return color == EndBox.color;
     }
 }
 

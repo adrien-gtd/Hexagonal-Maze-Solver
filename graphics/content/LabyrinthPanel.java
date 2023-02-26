@@ -1,6 +1,7 @@
 package graphics.content;
 
 import javax.swing.JPanel;
+import javax.swing.event.MouseInputListener;
 
 import graphics.LabyrinthWindow;
 import graphics.model.Hexagon;
@@ -10,9 +11,14 @@ import java.awt.*;
 import java.awt.event.*;
 
 @SuppressWarnings("serial")
-public class LabyrinthPanel extends JPanel implements MouseListener {
+public class LabyrinthPanel extends JPanel implements MouseInputListener {
     private final LabyrinthWindow window;
     private final LabyrinthModel model;
+    private Boolean isDraggedEnd = false;
+    private Boolean isDraggedStart = false;
+    private Hexagon hexagonDragged;
+    private Point hexagonCenter;
+    private Point previousPoint;
     
 
 
@@ -22,6 +28,7 @@ public class LabyrinthPanel extends JPanel implements MouseListener {
         setPreferredSize(new Dimension(500,500));                                                  //Add a size width et width * ratio
         setBackground(Color.WHITE);
         addMouseListener(this);
+        addMouseMotionListener(this);
     }
 
     public void update() {
@@ -33,6 +40,15 @@ public class LabyrinthPanel extends JPanel implements MouseListener {
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         drawGrid(graphics);
+        if (isDraggedEnd || isDraggedStart) {
+            drawHexagon(new Hexagon(
+                    hexagonCenter.x, 
+                    hexagonCenter.y, 
+                    hexagonDragged.getSize(), 
+                    hexagonDragged.getColor()
+                ), graphics);  
+        } 
+
     }
 
     private void drawGrid(Graphics graphics) {
@@ -53,15 +69,48 @@ public class LabyrinthPanel extends JPanel implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        model.clicked(e.getPoint());
+        Hexagon answer = model.clicked(e.getPoint());
+        if (answer == null)
+            return;
+        if (answer.isEnd() || answer.isStart()) {
+            isDraggedEnd = answer.isEnd();
+            isDraggedStart = answer.isStart();
+            hexagonDragged = answer;
+            previousPoint = e.getPoint();
+            hexagonCenter = new Point(answer.getX(), answer.getY());
+        }
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {}
+    public void mouseReleased(MouseEvent e) {
+        if(isDraggedEnd || isDraggedStart) {
+            model.dropped(e.getPoint(), hexagonDragged.isStart());
+        }
+        isDraggedEnd = false;
+        isDraggedStart = false;
+        repaint();
+    }
 
     @Override
     public void mouseEntered(MouseEvent e) {}
 
     @Override
     public void mouseExited(MouseEvent e) {}
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        if(isDraggedEnd || isDraggedStart) {
+            Point currentPt = e.getPoint();
+                hexagonCenter.translate(
+                    (int) (currentPt.getX() - previousPoint.getX()),
+                    (int) (currentPt.getY() - previousPoint.getY())
+                );
+                previousPoint = currentPt;
+                repaint();
+        }
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {}
 }
+    

@@ -4,6 +4,9 @@ import graph.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.plaf.synth.SynthStyle;
+
 import java.nio.file.*;
 import java.nio.charset.StandardCharsets;
 
@@ -218,8 +221,23 @@ public final class Maze implements Graph{
         int x2 = id2 / sizeY;
         int y2 = id2 % sizeY;
         MazeBox temp = grid[x1][y1];
-        grid[x1][y1] = grid[x2][y2];;
-        grid[x1][y1] = temp;
+        if(grid[x2][y2].isEmptyBox())
+            grid[x1][y1] = new EmptyBox(x1,y1,this);
+        if(grid[x2][y2].isEndBox())
+            grid[x1][y1] = new EndBox(x1,y1,this);
+        if(grid[x2][y2].isStartBox())
+            grid[x1][y1] = new StartingBox(x1,y1,this);
+        if(grid[x2][y2].isWallBox())
+            grid[x1][y1] = new WallBox(x1,y1,this);
+        
+        if(temp.isEmptyBox())
+            grid[x2][y2] = new EmptyBox(x2,y2,this);
+        if(temp.isEndBox())
+            grid[x2][y2] = new EndBox(x2,y2,this);
+        if(temp.isStartBox())
+            grid[x2][y2] = new StartingBox(x2,y2,this);
+        if(temp.isWallBox())
+            grid[x2][y2] = new WallBox(x2,y2,this);
         return;
     }
 
