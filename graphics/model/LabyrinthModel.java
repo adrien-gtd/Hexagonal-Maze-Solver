@@ -16,21 +16,33 @@ public class LabyrinthModel {
     private HexagonList hexagonList;
     private List<ChangeListener> listeners = new LinkedList<ChangeListener>();
     private Maze maze;
+
+    private int offset;
     private double aspectRatio;
+
     private List<Vertex> path;
     private String currFileName;
     private int currsorType;
+
+
     public static int CURRSOR = 0;
     public static int TOGGLE_WALL = 1;
 
-    public LabyrinthModel (Maze maze) {
-        setMaze(maze);
+    public LabyrinthModel () {
         currsorType = CURRSOR;
     }
 
     // Setters getters
     public HexagonList getHexagonList() {
         return hexagonList;
+    }
+
+    public void setOffset(int offset) {
+        this.offset = offset;
+    }
+
+    public int getOffset() {
+        return offset;
     }
 
     public double getAspectRatio() {

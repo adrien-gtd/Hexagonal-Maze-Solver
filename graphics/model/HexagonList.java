@@ -33,15 +33,15 @@ public class HexagonList {
 
         for (MazeBox[] line : grid) {
             if(xIndex % 2 == 0) {
-                currX = 0;
-            }
-            else { 
                 currX = sideHexagonSize;
             }
+            else { 
+                currX = sideHexagonSize * 2;
+            }
             for (MazeBox box : line) {
-                hexagonList.add(new Hexagon(sideHexagonSize + currX, currY, hexagonSize, box.getColor()));
+                hexagonList.add(new Hexagon(currX, currY, hexagonSize, box.getColor()));
                 currX += sideHexagonSize * 2;            //leave no gap between the hexagons
-                }
+            }
             currY += 1.5 * hexagonSize;
             xIndex ++;
         }
@@ -68,22 +68,12 @@ public class HexagonList {
             if(hexagon.getPolygon().contains(p)) {
                 int id = hexagonList.indexOf(hexagon);
                 MazeBox box = maze.getBox(id);
-                if(box.isEmptyBox()) {
-                    hexagon.setColor(WallBox.color);
-                    maze.setWallBox(id);
+                if(box.isEmptyBox() || box.isWallBox()) {
+                    hexagon.setColor(maze.toggleWallBox(id, box.isEmptyBox()));
                     model.setPath(null);
                     return hexagon;
                 }
-                if(box.isStartBox()) {
-                    return hexagon;
-                }
-                if(box.isEndBox()) {
-                    return hexagon;
-                }
-                if(box.isWallBox()) {
-                    maze.setEmptyBox(id);
-                    hexagon.setColor(EmptyBox.color);
-                    model.setPath(null);
+                if(box.isEndBox() || box.isStartBox()) {
                     return hexagon;
                 }
             }

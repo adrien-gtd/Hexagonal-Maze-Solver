@@ -10,20 +10,20 @@ public class MainTest {
     public static void main(String[] args) {
         Maze maze = new Maze(0, 0);
         //testDisjtrat(maze);
-        testGraphics(maze);        
+        new LabyrinthWindow();       
 
     }
 
-    private static void testGraphics (Maze maze) {
-        try {
-            maze.initFromTextFile("./data/labyrinthe.maze");
-            new LabyrinthWindow(maze);
-        }
-        catch (Exception ex) {
-            ex.printStackTrace();
-            System.out.println(ex.getMessage());
-        }
-    }
+    // private static void testGraphics (Maze maze) {
+    //     try {
+    //         maze.initFromTextFile("./data/labyrinthe.maze");
+    //         new LabyrinthWindow(maze);
+    //     }
+    //     catch (Exception ex) {
+    //         ex.printStackTrace();
+    //         System.out.println(ex.getMessage());
+    //     }
+    // }
     
 
     @SuppressWarnings("unused")

@@ -39,7 +39,8 @@ public class LabyrinthPanel extends JPanel implements MouseInputListener {
     @Override
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
-        drawGrid(graphics);
+        if(model.getHexagonList() != null)
+            drawGrid(graphics);
         if (isDraggedEnd || isDraggedStart) {
             drawHexagon(
                 new Hexagon(

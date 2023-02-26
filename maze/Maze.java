@@ -5,10 +5,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.plaf.synth.SynthStyle;
-
 import java.nio.file.*;
 import java.nio.charset.StandardCharsets;
+
+import java.awt.Color;
 
 public final class Maze implements Graph{
     private int sizeX;                        //size X of the maze
@@ -201,19 +201,17 @@ public final class Maze implements Graph{
         }
     }
 
-    public void setEmptyBox(int id) {
+    public Color toggleWallBox(int id, boolean isEmpty) {
         int x = id / sizeY;
         int y = id % sizeY;
-        this.grid[x][y] = new EmptyBox(x, y, this);
-        return;
-    }
-
-    public void setWallBox(int id){
-        int x = id / sizeY;
-        int y = id % sizeY;
-        this.grid[x][y] = new WallBox(x, y, this);
-        return;
-    }
+        if (isEmpty) {
+            this.grid[x][y] = new WallBox(x, y, this);
+            return WallBox.color;
+        } else {
+            this.grid[x][y] = new EmptyBox(x, y, this);
+            return EmptyBox.color;
+        }
+    }   
 
     public void swapBoxes(int id1, int id2) {
         int x1 = id1 / sizeY;

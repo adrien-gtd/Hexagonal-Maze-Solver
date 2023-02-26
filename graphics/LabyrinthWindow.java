@@ -17,14 +17,15 @@ public class LabyrinthWindow extends JFrame implements ChangeListener{
     private LabyrinthModel model;
 
 
-    public LabyrinthWindow (Maze maze) {                        //change the param to void when the application is done
+    public LabyrinthWindow () {                        //change the param to void when the application is done
         super ("Labyrinth Window");
-        setLabyrinthModel(new LabyrinthModel(maze));
+        setLabyrinthModel(new LabyrinthModel());
         setJMenuBar(menuBar = new LabyrinthMenuBar(this));
         add(windowPanel = new WindowPanel(this));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         pack();
+        JOptionPane.showMessageDialog(this, "Use the 'File' menu to open or set a new grid", "New maze", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void setLabyrinthModel(LabyrinthModel model) {
