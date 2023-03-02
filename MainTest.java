@@ -8,7 +8,7 @@ import java.util.Iterator;
 
 public class MainTest {
     public static void main(String[] args) {
-        Maze maze = new Maze(0, 0);
+        //Maze maze = new Maze(0, 0);
         //testDisjtrat(maze);
         new LabyrinthWindow();       
 

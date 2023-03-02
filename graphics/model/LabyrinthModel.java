@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import java.awt.Point;
+import java.awt.Dimension;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -17,11 +18,9 @@ public class LabyrinthModel {
     private List<ChangeListener> listeners = new LinkedList<ChangeListener>();
     private Maze maze;
 
-    private int offset;
-    private double aspectRatio;
-
     private List<Vertex> path;
     private String currFileName;
+    private Dimension windowSize;
     private int currsorType;
 
 
@@ -37,22 +36,10 @@ public class LabyrinthModel {
         return hexagonList;
     }
 
-    public void setOffset(int offset) {
-        this.offset = offset;
-    }
-
-    public int getOffset() {
-        return offset;
-    }
-
-    public double getAspectRatio() {
-        return aspectRatio;
-    }
 
     public void setMaze(Maze maze) {
         this.maze = maze;
-        hexagonList = new HexagonList(maze);
-        updateRatio();
+        hexagonList = new HexagonList(this, windowSize);
         stateChanges();
     }
 
@@ -81,6 +68,14 @@ public class LabyrinthModel {
     public void setCurrsorType(int currsorType) {
         this.currsorType = currsorType;
     }
+
+    public void setWindowSize(Dimension windowSize) {
+        this.windowSize = windowSize;
+        if (maze != null) {
+            hexagonList = new HexagonList(this, windowSize);
+            stateChanges();
+        }
+    }
     //fin des getters setters
 
     public void saveMaze (String s) throws Exception {
@@ -101,25 +96,34 @@ public class LabyrinthModel {
     
     public Hexagon clicked(Point p) {
         if(!(currsorType == CURRSOR) ) {
-            Hexagon answer = hexagonList.clicked(p, this);
+            Hexagon answer = hexagonList.clicked(p);
             stateChanges();
             return answer;
         }
         return null;
     }
 
-    private void updateRatio() {
-        int gridSizeX = maze.getSizeX();
-        int gridSizeY = maze.getSizeY();
+    public int getHexagonSize(Dimension windowSize) {        //unused
+        int mazeSizeH = maze.getSizeX();
+        int mazeSizeW = maze.getSizeY();
 
-        double height = 2 * gridSizeX + 4;
-        double width = Math.sqrt(3) * (gridSizeY + 1) + 4;
-        aspectRatio = height / width;
+        int hexagonSizeH = (int) (windowSize.getHeight() / (2 * mazeSizeH + 2));
+        int hexagonSizeW = (int) (windowSize.getWidth() / ((Math.sqrt(3) * (mazeSizeW + 1/2) + 4)));
+
+        return Math.min(hexagonSizeH, hexagonSizeW);
+    }
+
+    public Dimension getOffset(Dimension windowSize, Dimension labyrinthSize,  int hexagonSize) {
+        
+        return new Dimension(
+            (int) (windowSize.getWidth() - labyrinthSize.getWidth()) / 2,
+            (int) (windowSize.getHeight() - labyrinthSize.getHeight()) / 2
+        );
     }
 
 
     public void dropped(Point p, boolean isStart) {
-        if(hexagonList.dropped(p, isStart, this)) {
+        if(hexagonList.dropped(p, isStart)) {
             stateChanges();
         }
     }

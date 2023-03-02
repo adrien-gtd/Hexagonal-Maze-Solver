@@ -20,4 +20,25 @@ public class FileMenu extends JMenu {
       add(saveMenuItem = new SaveMenuItem(window, saveAsMenuItem));
       add(quitMenuItem = new QuitMenuItem());
    }
+
+   public QuitMenuItem getQuitMenuItem() {
+       return quitMenuItem;
+   }
+
+   public LoadMenuItem getLoadMenuItem() {
+       return loadMenuItem;
+   }
+
+   public SaveAsMenuItem getSaveAsMenuItem() {
+       return saveAsMenuItem;
+   }
+
+   public SaveMenuItem getSaveMenuItem() {
+       return saveMenuItem;
+   }
+
+   public NewMenuItem getNewMenuItem() {
+       return newMenuItem;
+   }
+   
 }

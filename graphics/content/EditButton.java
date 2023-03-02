@@ -9,14 +9,12 @@ import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
 public class EditButton extends JButton implements ActionListener {
-    private final LabyrinthWindow window;
     private final LabyrinthModel model;
 
     public EditButton (LabyrinthWindow window) {
         super("Edit"); // Change button text
 
         this.addActionListener(this);
-        this.window = window;
         model = window.getLabyrinthModel();
     }
 

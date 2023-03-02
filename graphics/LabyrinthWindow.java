@@ -8,7 +8,6 @@ import javax.swing.event.ChangeListener;
 import graphics.menu.*;
 import graphics.model.LabyrinthModel;
 import graphics.content.*;
-import maze.*;
 
 @SuppressWarnings("serial")
 public class LabyrinthWindow extends JFrame implements ChangeListener{

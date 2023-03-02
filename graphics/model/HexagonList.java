@@ -5,6 +5,7 @@ import java.util.List;
 
 import java.awt.Point;
 import java.awt.Color;
+import java.awt.Dimension;
 
 import maze.*;
 import maze.MazeBox;
@@ -14,32 +15,44 @@ public class HexagonList {
     private int hexagonSize = 20;
     private List<Hexagon> hexagonList = new ArrayList<Hexagon>();
     private final Maze maze;
+    private Dimension labyrinthSize;
+    private LabyrinthModel model;
+    private Dimension offset;
 
-    public HexagonList (Maze maze) {
-        this.maze = maze;
+    public HexagonList (LabyrinthModel model, Dimension windowSize) {
+        this.model = model;
+        hexagonSize = model.getHexagonSize(windowSize);
+        this.maze = model.getMaze();
         creatHexagonList(maze);
+        offset = model.getOffset(windowSize, labyrinthSize, hexagonSize);
+        applyOffset(offset);
     }
 
     public List<Hexagon> getList() {
         return hexagonList;
     }
 
+    public Dimension getLabyrinthSize() {
+        return labyrinthSize;
+    }
+
     private void creatHexagonList(Maze maze) {
-        MazeBox[][] grid = maze.getGrid();
         int sideHexagonSize = (int) ((Math.sqrt(3) / 2) * hexagonSize);
         int xIndex = 0;
         int currX;
         int currY = hexagonSize;
 
-        for (MazeBox[] line : grid) {
-            if(xIndex % 2 == 0) {
+        for (MazeBox[] line : maze.getGrid()) {
+            if(xIndex % 2 == 0) 
                 currX = sideHexagonSize;
-            }
-            else { 
+            else 
                 currX = sideHexagonSize * 2;
-            }
             for (MazeBox box : line) {
-                hexagonList.add(new Hexagon(currX, currY, hexagonSize, box.getColor()));
+                hexagonList.add(new Hexagon(currX,currY, hexagonSize, box.getColor()));
+                if(xIndex % 2 == 0)
+                    labyrinthSize = new Dimension(currX + 2 * sideHexagonSize, currY + hexagonSize);
+                else
+                    labyrinthSize = new Dimension(currX + sideHexagonSize, currY + hexagonSize);
                 currX += sideHexagonSize * 2;            //leave no gap between the hexagons
             }
             currY += 1.5 * hexagonSize;
@@ -63,7 +76,7 @@ public class HexagonList {
         }
     }
 
-    public Hexagon clicked(Point p, LabyrinthModel model) {
+    public Hexagon clicked(Point p) {
         for(Hexagon hexagon : hexagonList) {
             if(hexagon.getPolygon().contains(p)) {
                 int id = hexagonList.indexOf(hexagon);
@@ -81,7 +94,7 @@ public class HexagonList {
         return null;
     }
 
-    public boolean dropped(Point p, boolean isStart, LabyrinthModel model) {
+    public boolean dropped(Point p, boolean isStart) {
         for(Hexagon hexagon : hexagonList) {
             if(hexagon.getPolygon().contains(p)) {
                 try {
@@ -96,6 +109,12 @@ public class HexagonList {
             }
         }
         return false;
+    }
+
+    private void applyOffset(Dimension offset) {
+        for (Hexagon hexagon : hexagonList) {
+            hexagon.applyOffset(offset);
+        }
     }
 
     private void swapHexagon(int id1, int id2) {

@@ -6,13 +6,13 @@ import javax.swing.event.MouseInputListener;
 import graphics.LabyrinthWindow;
 import graphics.model.Hexagon;
 import graphics.model.LabyrinthModel;
+import graphics.model.HexagonList;
 
 import java.awt.*;
 import java.awt.event.*;
 
 @SuppressWarnings("serial")
-public class LabyrinthPanel extends JPanel implements MouseInputListener {
-    private final LabyrinthWindow window;
+public class LabyrinthPanel extends JPanel implements MouseInputListener, ComponentListener {
     private final LabyrinthModel model;
     private Boolean isDraggedEnd = false;
     private Boolean isDraggedStart = false;
@@ -23,12 +23,12 @@ public class LabyrinthPanel extends JPanel implements MouseInputListener {
 
 
     public LabyrinthPanel (LabyrinthWindow window) {
-        this.window = window;
         model = window.getLabyrinthModel();
         setPreferredSize(new Dimension(500,500));                                                  //Add a size width et width * ratio
         setBackground(Color.WHITE);
         addMouseListener(this);
         addMouseMotionListener(this);
+        addComponentListener(this);
     }
 
     public void update() {
@@ -39,8 +39,10 @@ public class LabyrinthPanel extends JPanel implements MouseInputListener {
     @Override
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
-        if(model.getHexagonList() != null)
+        HexagonList list = model.getHexagonList();
+        if(list != null) {
             drawGrid(graphics);
+        }
         if (isDraggedEnd || isDraggedStart) {
             drawHexagon(
                 new Hexagon(
@@ -124,4 +126,18 @@ public class LabyrinthPanel extends JPanel implements MouseInputListener {
 
     @Override
     public void mouseMoved(MouseEvent e) {}
+
+    @Override
+    public void componentResized(ComponentEvent e) {
+        model.setWindowSize(getSize());
+    }
+
+    @Override
+    public void componentMoved(ComponentEvent e) {}
+
+    @Override
+    public void componentShown(ComponentEvent e) {}
+
+    @Override
+    public void componentHidden(ComponentEvent e) {}
 }

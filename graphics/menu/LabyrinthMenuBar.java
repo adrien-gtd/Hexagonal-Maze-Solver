@@ -17,4 +17,8 @@ public class LabyrinthMenuBar extends JMenuBar {
    public void update() {
       return;
    }
+
+   public FileMenu getFileMenu() {
+       return fileMenu;
+   }
 }

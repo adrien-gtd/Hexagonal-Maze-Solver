@@ -18,7 +18,6 @@ public class PathButton extends JButton implements ActionListener {
 
     public PathButton (LabyrinthWindow window) {
         super("Generate Path"); // Change button text
-        togglePath = false;
         this.addActionListener(this);
         model = window.getLabyrinthModel();
         this.window = window;

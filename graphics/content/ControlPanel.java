@@ -19,5 +19,21 @@ public class ControlPanel extends JPanel{
         add(editButton = new EditButton(window));
     }
 
+    public LabyrinthWindow getWindow() {
+        return window;
+    }
+
+    public PathButton getPathButton() {
+        return pathButton;
+    }
+
+    public CursorButton getCursorButton() {
+        return cursorButton;
+    }
+
+    public EditButton getEditButton() {
+        return editButton;
+    }
+
 
 }

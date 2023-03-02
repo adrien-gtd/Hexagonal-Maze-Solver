@@ -9,11 +9,12 @@ import maze.StartingBox;
 public class Hexagon {
     private final Color pathColor = Color.CYAN;
     private final Color emptyColor = Color.GRAY;
-    private final int x;
-    private final int y;
+    private int x;
+    private int y;
     private final int size;
     private final Polygon polygon;
     private Color color;
+
     
 
     public Hexagon (int x, int y, int size, Color color) {
@@ -78,6 +79,12 @@ public class Hexagon {
 
     public boolean isEnd() {
         return color == EndBox.color;
+    }
+
+    public void applyOffset(Dimension offset) {
+        x += (int) offset.getWidth();
+        y += (int) offset.getHeight();
+        polygon.translate((int) offset.getWidth(), (int) offset.getHeight());
     }
 }
 
