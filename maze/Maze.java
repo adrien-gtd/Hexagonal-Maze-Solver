@@ -65,7 +65,7 @@ public final class Maze implements Graph, Distance{
 
     /**
      * This constructor creates the maze object from an existing file containing a saved maze.
-     * The exception is handeled at a higher level of the program!
+     * The exception is handled at a higher level of the program!
      * @param fileName name of the file containing the data 
      * @throws Exception
      */
@@ -269,7 +269,7 @@ public final class Maze implements Graph, Distance{
      * Save the current maze object to a file
      * @param fileName  name of the file the maze should be saved at 
      * @throws Exception    an error can occure when opening / writing on the file
-     *                      the eroor is handeled the same way as in initFromTextFile()
+     *                      the eroor is handled the same way as in initFromTextFile()
      */
     public final void saveToTextFile(String fileName) throws Exception {
         try {

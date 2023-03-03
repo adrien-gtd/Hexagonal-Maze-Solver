@@ -12,7 +12,7 @@ import java.awt.event.*;
 
 /**
  * This panel controls the diplaying of the maze grid. No data is manipulated here, only the annimations and the
- * display of the data realated to the maze grid is handeled here.
+ * display of the data realated to the maze grid is handled here.
  */
 @SuppressWarnings("serial")
 public class LabyrinthPanel extends JPanel implements MouseInputListener, ComponentListener {
@@ -92,7 +92,7 @@ public class LabyrinthPanel extends JPanel implements MouseInputListener, Compon
 
     /**
      * On the press of a click, there are three possiblity:
-     * -the user clicked on a empty / wall box -> handeled by the model (changing the type)
+     * -the user clicked on a empty / wall box -> handled by the model (changing the type)
      * -the user did not clicked on any box -> nothing
      * -the user click on the start / end box -> starting the drag annimation
      */
@@ -112,7 +112,7 @@ public class LabyrinthPanel extends JPanel implements MouseInputListener, Compon
 
     /**
      * When the user realsed the button, if he was not dragging the end or strat box, 
-     * nothing happenes. If he was, the model handels the modifications if necessary.
+     * nothing happenes. If he was, the model handles the modifications if necessary.
      * End of the dragging annimantion.
      */
     @Override
