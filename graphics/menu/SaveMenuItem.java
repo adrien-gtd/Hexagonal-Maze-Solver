@@ -7,6 +7,9 @@ import graphics.model.LabyrinthModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Save menu item. Allow the user to save the modifications he made on the maze in one click.
+ */
 @SuppressWarnings("serial")
 public class SaveMenuItem extends JMenuItem implements ActionListener {
 
@@ -20,9 +23,15 @@ public class SaveMenuItem extends JMenuItem implements ActionListener {
         this.window = window;
         model = window.getLabyrinthModel();
         this.saveAs = saveAs;
-   }
+    }
 
-    @Override
+    /**
+     * Define the acction performed when the menu is clicked on.
+     * The model contains a String named current file. If this string isn't null
+     * the maze is saved at this location. Otherwise a click on this menu is redirected to
+     * the saveAs menu.
+     */
+    @Override  
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this) {
             if (model.getCurrFileName() != null) {

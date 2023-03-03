@@ -3,6 +3,9 @@ package graphics.menu;
 import javax.swing.* ;
 import graphics.*;
 
+/**
+ * File Menu, contains the menu items
+ */
 @SuppressWarnings("serial")
 public class FileMenu extends JMenu {
    private final QuitMenuItem quitMenuItem;
