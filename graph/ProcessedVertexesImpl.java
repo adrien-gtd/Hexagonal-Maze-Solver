@@ -2,6 +2,9 @@ package graph;
 
 import java.util.HashSet;
 
+/**
+ * @see graph.ProcessedVertex.java
+ */
 public class ProcessedVertexesImpl implements ProcessedVertexes {
     private HashSet<Vertex> vertexSet;
 

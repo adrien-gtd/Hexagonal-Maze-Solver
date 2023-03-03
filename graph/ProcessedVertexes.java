@@ -1,8 +1,21 @@
 package graph;
 
+/**
+ * Classes implementing this interface represent the set of vertices processed by the algorith at a given state
+ */
 public interface ProcessedVertexes {
     
-    public void markProcessed (Vertex v);                     //Mark a vertex 'v' as processed (add it to the processedVertex list)
-    public boolean isProcessed (Vertex v);          //Check is a vertex 'v' is processed (if it is in the list) 
+    /**
+     * Mark a vertex as processed for the algorithm
+     * @param v vertex marked
+     */
+    public void markProcessed (Vertex v);
+
+    /**
+     * Check if a vertex is already processed
+     * @param v vertex checked
+     * @return true if the vertex is already processed, false otherwise 
+     */
+    public boolean isProcessed (Vertex v);
 
 }

@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * @see graph.shortestPaths.java
+ */
 public class ShortestPathsImpl implements ShortestPaths {
     private HashMap<Vertex, Vertex> shortest;
 

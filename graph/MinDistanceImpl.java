@@ -3,6 +3,9 @@ package graph;
 import java.util.HashMap;
 import java.util.ListIterator;
 
+/**
+ * @see graph.MinDistance.java
+ */
 public class MinDistanceImpl implements MinDistance {
     private HashMap<Vertex, Integer> minDist;
 

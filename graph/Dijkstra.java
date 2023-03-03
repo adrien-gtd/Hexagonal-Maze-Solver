@@ -1,8 +1,22 @@
 package graph;
 import java.util.ListIterator;
 
+/**
+ * Description: implementation of the dijkstra algorithm
+ */
 public class Dijkstra {
 
+    /**
+     * This algorithm is used to obtain the shortest path in a graph between two given vertices
+     * @param graph type Graph, represents an oriented graph
+     * @param startVertex starting vertex of the algorithm
+     * @param endVertex vertex on which the algorithm stops
+     * @param processedVertexes list containing the vertices on which the algorithm already calculated the shortest path
+     * @param minDistance updated through the entire algorithm. At a given state, contains the minimal distance between two given vertices
+     * @param distance  used to get the distance in the graph between two vertices
+     * @param shortestPaths returned at the end. Contains the shortest path between the startVertex and any already processed vertex of the graph
+     * @return the object of type shortestpath containing the path from startVertex to endVertex
+     */
     public static ShortestPaths dijkstra (
         Graph graph, 
         Vertex startVertex, 
@@ -67,6 +81,14 @@ public class Dijkstra {
         return shortestPaths;
     }
 
+
+    /**
+     * This algorithm applies the algorithm above with less parameters
+     * @param graph             *see above*
+     * @param startVertex       *see above*
+     * @param endVertex         *see above*
+     * @return                  *see above*
+     */
     public static ShortestPaths dijkstra(Graph graph, Vertex startVertex, Vertex endVertex) {
         ProcessedVertexes processedVertexes = new ProcessedVertexesImpl();
         MinDistance minDistance = new MinDistanceImpl();

@@ -1,5 +1,8 @@
 package graph;
 
+/**
+ * @see graph.Distance.java
+ */
 public class DistanceImpl implements Distance{
     private final Graph graph;
 
