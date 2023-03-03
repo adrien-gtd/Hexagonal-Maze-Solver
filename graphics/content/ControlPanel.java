@@ -4,6 +4,9 @@ import javax.swing.*;
 import graphics.*;
 import java.awt.*;
 
+/**
+ * JPanel containing the buttons at the bottom of the window.
+ */
 @SuppressWarnings("serial")
 public class ControlPanel extends JPanel{
     private final LabyrinthWindow window;
@@ -13,7 +16,7 @@ public class ControlPanel extends JPanel{
 
     public ControlPanel (LabyrinthWindow window) {
         this.window = window;
-        setLayout(new GridLayout(1,4));
+        setLayout(new GridLayout(1,3));     //grid layout used
         add(pathButton = new PathButton(window));
         add(cursorButton = new CursorButton(window));
         add(editButton = new EditButton(window));

@@ -6,11 +6,14 @@ import javax.swing.event.MouseInputListener;
 import graphics.LabyrinthWindow;
 import graphics.model.Hexagon;
 import graphics.model.LabyrinthModel;
-import graphics.model.HexagonList;
 
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * This panel controls the diplaying of the maze grid. No data is manipulated here, only the annimations and the
+ * display of the data realated to the maze grid is handeled here.
+ */
 @SuppressWarnings("serial")
 public class LabyrinthPanel extends JPanel implements MouseInputListener, ComponentListener {
     private final LabyrinthModel model;
@@ -24,7 +27,7 @@ public class LabyrinthPanel extends JPanel implements MouseInputListener, Compon
 
     public LabyrinthPanel (LabyrinthWindow window) {
         model = window.getLabyrinthModel();
-        setPreferredSize(new Dimension(500,500));                                                  //Add a size width et width * ratio
+        setPreferredSize(new Dimension(500,500));       //Default size of the window
         setBackground(Color.WHITE);
         addMouseListener(this);
         addMouseMotionListener(this);
@@ -35,12 +38,15 @@ public class LabyrinthPanel extends JPanel implements MouseInputListener, Compon
         repaint();
     }
 
-
+    /**
+     * This method is called evry time the data chages in the model (new maze, new path, ...)
+     * But also on certain events (dragging a box, resizing the window, ..)
+     * Implemented to correctly display the current state of the maze. 
+     */
     @Override
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
-        HexagonList list = model.getHexagonList();
-        if(list != null) {
+        if(model.getHexagonList() != null) {
             drawGrid(graphics);
         }
         if (isDraggedEnd || isDraggedStart) {
@@ -52,7 +58,6 @@ public class LabyrinthPanel extends JPanel implements MouseInputListener, Compon
                     Color.YELLOW
                 ), 
                 graphics);
-
             drawHexagon(
                 new Hexagon(
                     hexagonCenter.x, 
@@ -62,14 +67,21 @@ public class LabyrinthPanel extends JPanel implements MouseInputListener, Compon
                 ), 
                 graphics);  
         } 
-
     }
 
+    /**
+     * This method when called, draw the current ask to the model the current maze and draws it on the screen
+     */
     private void drawGrid(Graphics graphics) {
         for(Hexagon hexagon : model.getHexagonList().getList())
             drawHexagon(hexagon, graphics);
     }
 
+
+    /**
+     * Method used to draw a given hexagon on the screen.
+     * @param hexagon   hexagon to draw
+    */
     private void drawHexagon (Hexagon hexagon, Graphics graphics) {
         graphics.setColor(hexagon.getColor());
         graphics.fillPolygon(hexagon.getPolygon());
@@ -78,9 +90,12 @@ public class LabyrinthPanel extends JPanel implements MouseInputListener, Compon
         return;
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {}
-
+    /**
+     * On the press of a click, there are three possiblity:
+     * -the user clicked on a empty / wall box -> handeled by the model (changing the type)
+     * -the user did not clicked on any box -> nothing
+     * -the user click on the start / end box -> starting the drag annimation
+     */
     @Override
     public void mousePressed(MouseEvent e) {
         Hexagon answer = model.clicked(e.getPoint());
@@ -95,6 +110,11 @@ public class LabyrinthPanel extends JPanel implements MouseInputListener, Compon
         }
     }
 
+    /**
+     * When the user realsed the button, if he was not dragging the end or strat box, 
+     * nothing happenes. If he was, the model handels the modifications if necessary.
+     * End of the dragging annimantion.
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
         if(isDraggedEnd || isDraggedStart) {
@@ -105,12 +125,12 @@ public class LabyrinthPanel extends JPanel implements MouseInputListener, Compon
         repaint();
     }
 
-    @Override
-    public void mouseEntered(MouseEvent e) {}
 
-    @Override
-    public void mouseExited(MouseEvent e) {}
-
+    /**
+     * If the user clicked on the starting box or the end box, one of the 
+     * booleans isDragged is set to true. As long as he doesn't realese the click, 
+     * an hexagon (drawn in the paintComponent method) follows the cursor of the user.
+     */
     @Override
     public void mouseDragged(MouseEvent e) {
         if(isDraggedEnd || isDraggedStart) {
@@ -124,13 +144,21 @@ public class LabyrinthPanel extends JPanel implements MouseInputListener, Compon
         }
     }
 
-    @Override
-    public void mouseMoved(MouseEvent e) {}
 
+    /**
+     * When the window is resezed, the model is notified. 
+     * Used to center the maze and update the size of the 
+     * boxes to take the most space possible on the screen.
+     */
     @Override
     public void componentResized(ComponentEvent e) {
         model.setWindowSize(getSize());
     }
+
+
+
+
+    /* -------------- unused -------------- */
 
     @Override
     public void componentMoved(ComponentEvent e) {}
@@ -140,4 +168,16 @@ public class LabyrinthPanel extends JPanel implements MouseInputListener, Compon
 
     @Override
     public void componentHidden(ComponentEvent e) {}
+
+    @Override
+    public void mouseClicked(MouseEvent e) {}
+
+    @Override
+    public void mouseMoved(MouseEvent e) {}
+
+    @Override
+    public void mouseEntered(MouseEvent e) {}
+
+    @Override
+    public void mouseExited(MouseEvent e) {}
 }
