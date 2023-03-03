@@ -10,7 +10,7 @@ import graphics.model.LabyrinthModel;
 import graphics.content.*;
 
 /**
- * this is the main frame of the program
+ * This is the main frame of the program
  */
 @SuppressWarnings("serial")
 public class LabyrinthWindow extends JFrame implements ChangeListener{
@@ -21,7 +21,7 @@ public class LabyrinthWindow extends JFrame implements ChangeListener{
     private LabyrinthModel model;
 
     /**
-     * initializing a new window
+     * Initializing a new window
      */
     public LabyrinthWindow () {                        //change the param to void when the application is done
         super ("Labyrinth Window");
@@ -35,7 +35,7 @@ public class LabyrinthWindow extends JFrame implements ChangeListener{
     }
 
     /**
-     * add itself to the observer list when adding the model to be notified of the changed
+     * Add itself to the observer list of the model when adding a new model to the window to be notified of the changes
      * @see graphics.model.LabyrinthModel.java
      */
     public void setLabyrinthModel(LabyrinthModel model) {
@@ -52,18 +52,18 @@ public class LabyrinthWindow extends JFrame implements ChangeListener{
     }
 
     /**
-     * display any exception of the program on the screen and also print the error message on the standard output stream
-     * note that the error message is customized and contains all the information to identify the source of the error
+     * Displays any exception of the program on the screen and also print the error message on the standard output stream.
+     * Note that the error message is customized and contains all the information to quickly identify the source of the error.
      * @param errorMessage  error message
      */
-    public void error(String errorMessage) {                    //print the error on the gui
+    public void error(String errorMessage) {                    //print the error on the GUI
         System.out.println(errorMessage); 
         JOptionPane.showMessageDialog(this, errorMessage, "Error message", JOptionPane.ERROR_MESSAGE);         
     }
 
     /**
-     * when the state of the model is changed, the window updates all the composent if necessary using their 
-     * update() methode
+     * When the state of the model is changed, the window updates all the components if necessary using their 
+     * update() method
      */
     @Override
     public void stateChanged(ChangeEvent e) {

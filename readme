@@ -1,0 +1,51 @@
+Version final du projet de programmation de l'unité d'enseignement inf103.
+
+Pour exécuter le programme:
+- Ouvrir un terminal dans le répertoire contenant ce fichier
+- Entrer la commande suivante pour compiler le projet : find . -name "*.java" -print | xargs javac ;
+- Puis exécuter le main avec la commande : java main/Main
+
+Description du projet :
+
+La fenêtre graphique est intuitive et facile d'utilisation.
+Les menus 'File' :
+Il est possible d'importer un fichier .maze avec le menu 'Load'.
+Il est possible de sauvegarde le labyrinthe actuel dans un nouveau fichier grâce au menu 'Save as'.
+Il est possible de quitter le programme avec le menu 'Quit' ou la croix.
+Il est possible de sauvegarder les modifications du labyrinthe actuel en un seul clique grâce au menu 'Save'.
+Il est possible d'instancier un nouveau labyrinthe de la taille voulu avec le menu 'New'.
+
+
+Labyrinthe :
+Les cases vides sont représentées en gris claire.
+Les cases représentants des mures sont en gris foncé.
+La case de départ est en vert.
+La case d'arrivé est en rouge.
+
+
+Boutons :
+'Generte Path' permet d'afficher le plus cours chemin entre la case de départ et la case d'arrivé.
+Un deuxième clique sur ce bouton permet de cacher le chemin.
+
+Le bouton 'Edit' permet de passer le curseur en mode édition.
+Un clique sur une case vide la change en mure et inversement, un clique sur une mure le transforme en case vide.
+Il est possible de déplacer les cases de départ et d'arrivé en les faisant glisser sur l'écran (rester appuié).
+Relâcher la case départ/arrivé sur une autre case échange leur position et si la case est un mure, elle devient
+une case vide.
+
+Le bouton 'Cursor' repasse le curseur en mode par défaut.
+
+
+Centrage et taille de la grille :
+L'affichage a été travaillé de sorte que la grille soit toujours centrée et avec une bordure adaptée au nombre de case.
+Modifier la taille de l'écran change l'affichage pour que la grille occupe le plus d'espace disponible et qu'elle reste centrée.
+
+
+
+Commentaires :
+Le code est très commenté (en anglais), il est facile de comprendre le fonctionnement de l'application en lisant le code !!
+
+Projet par Adrien Guittard
+
+
+

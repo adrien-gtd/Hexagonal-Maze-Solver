@@ -12,47 +12,47 @@ import maze.MazeBox;
 import graph.Vertex;
 
 /**
- * This class is designed as a data structure containing all the informations on the grid required to display it. 
- * It also contains the method required to manipulate the the list and the elements of the list.
+ * This class is designed as a data structure containing all the information on the grid required to display it. 
+ * It also contains the method required to manipulate the list and the elements in the list.
  */
 public class HexagonList {
     /**
-     * Size of the hexagon
+     * Size of the hexagon (in pixels)
      */
     private int hexagonSize;
 
     /**
-     * list of he hexagons representing the current maze
+     * List of the hexagons representing the current maze
      */
     private List<Hexagon> hexagonList = new ArrayList<Hexagon>();
 
     /**
-     * maze associated with this list of hexagons
+     * Maze associated with this list of hexagons
      */
     private final Maze maze;
 
     /**
-     * exact size of the maze in pixel
+     * Exact size of the maze (in pixels)
      */
     private Dimension labyrinthSize;
 
     /**
-     * model of the gui
+     * Model of the GUI
      */
     private LabyrinthModel model;
 
     /**
-     * offset applied to the hexagons of the list (important to center the grid !!)
+     * Offset applied to the hexagons of the list (important to center the grid !!)
      */
     private Dimension offset;
 
 
     /**
-     * the order in which the elements of the class are inizilised is very important:
+     * The order in which the elements of the class are inizilised is important:
      * -first we get the best sized for the hexagons according to the scrren size
      * -create the list to get the exact size of the maze on the screen
      * -calculate and apply the offset to make the maze perfectly centered!!
-     * @param model model of the gui
+     * @param model model of the GUI
      * @param windowSize    current size of the window (updated at each resize event)
      */
     public HexagonList (LabyrinthModel model, Dimension windowSize) {
@@ -60,7 +60,7 @@ public class HexagonList {
         hexagonSize = model.getHexagonSize(windowSize);
         this.maze = model.getMaze();
         creatHexagonList(maze);
-        offset = model.getOffset(windowSize, labyrinthSize, hexagonSize);
+        offset = model.getOffset(windowSize, labyrinthSize);
         applyOffset(offset);
     }
 
@@ -74,8 +74,8 @@ public class HexagonList {
 
 
     /**
-     * private method used to creat the list of hexagons.
-     * get the value of the labyrinth size (labyrinthSize)
+     * Private method used to creat the list of hexagons.
+     * Also sets the value of the labyrinth size (labyrinthSize)
      * @param maze  current maze
      */
     private void creatHexagonList(Maze maze) {
@@ -103,7 +103,7 @@ public class HexagonList {
 
 
     /**
-     * add or remove the path from the list of hexagons
+     * Add or remove the path from the list of hexagons
      */
     public void updatePath (List<Vertex> path) {
         if(path == null) {
@@ -120,7 +120,7 @@ public class HexagonList {
 
 
     /**
-     * handle the modifications of the hexagon list in case an hexagon is clicked
+     * Handle the modifications of the hexagon list in case an hexagon is clicked
      * @param p contains the coordinats of the clicked point
      * @return  the hexagon clicked on
      */
@@ -144,16 +144,16 @@ public class HexagonList {
 
 
     /**
-     * handle the modifications of the hexagon list in case the starting or ending box
+     * Handle the modifications of the hexagon list in case the starting / ending box
      * of the maze is dropped:
      * -dropped on a empty / wall box -> swap the two and replace the old starting / ending with an empty box
      * -dropped outside the maze -> nothing
-     * -dropped on another box type -> just swap both
+     * -dropped on another box type (StartBox or EndBox) -> just swap both
      * This method needs to swap the boxes in the maze (data) and in the hexagon list (diaplay)
-     * @param p point where the box was realesed
+     * @param p point where the box was realesed (in pixels)
      * @param isStart   true -> the box dropped is the starting box
-     *                  false -> the box dropped is the ending box
-     * @return  true if the box got dropped onto an other box (different), false otherwise
+     *                  false -> the box dropped is the end box
+     * @return  true if the box got dropped onto an other (different) box, false otherwise
      */
     public boolean dropped(Point p, boolean isStart) {
         for(Hexagon hexagon : hexagonList) {
@@ -173,8 +173,8 @@ public class HexagonList {
     }
 
     /**
-     * private method used in the method dropped()
-     * swap the hexagons in the hexagon list and swap the boxes in the maze
+     * Private method used in the method dropped().
+     * Swaps the hexagons in the hexagon list and swap the boxes in the maze
      * @param id1  box / hexagon to swap 1
      * @param id2  box / hexagon to swap 2
      */
@@ -188,7 +188,7 @@ public class HexagonList {
     }
 
     /**
-     * apply the offset on each hexagon of the hexagon list
+     * Applies the offset on each hexagon of the hexagon list
      * @see graphics.model.Hexagon.java
      * @param offset offset to apply on each hexagon of the list
      */

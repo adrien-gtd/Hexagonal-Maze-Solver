@@ -23,11 +23,11 @@ public class NewMenuItem extends JMenuItem implements ActionListener {
     }
 
     /**
-     * Define the acction performed when the menu is clicked on.
-     * The user needs to input the size of the maze desired.
+     * Defines the acction performed when the menu is clicked on.
+     * The user needs to input the size of the desired maze.
      * If the user enters a valid input, a new maze is set in the model.
      * The 'current file' used for the save menu is set to null.
-     * If the user press the save menu, he will be redirected to the save as menu
+     * If the user presses the save menu, he will be redirected to the save as menu
      * @see graphics.menu.SaveMenuItem.java
      */
     @Override
@@ -46,7 +46,7 @@ public class NewMenuItem extends JMenuItem implements ActionListener {
 
     /**
      * Creates a JOptionPane asking the user for an int as an input. 
-     * The method loops until the user entered a correct value or pressed the cancel button.
+     * The method loops until the user enters a correct value or presses the cancel button.
      * @param variableName  name of the value to ask for
      * @return  return -1 if the cancel button is pressed or a positive integer entered by the user
      */

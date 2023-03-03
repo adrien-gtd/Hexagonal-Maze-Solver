@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Default mode, the user can not edit the maze.
+ * Button changing the cursor type to default mode: the user can not edit the maze on the GUI.
  * @see graphics.content.EditButton.java
  */
 @SuppressWarnings("serial")
@@ -23,11 +23,11 @@ public class CursorButton extends JButton implements ActionListener{
     }
 
     /**
-     * Define the acction performed when the menu is clicked on.
+     * Define the action performed when the menu is clicked on.
      * The value changed controls the eddition of the maze.
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        model.setCurrsorType(LabyrinthModel.CURRSOR);
+        model.setCursorType(LabyrinthModel.CURSOR);
     }
 }

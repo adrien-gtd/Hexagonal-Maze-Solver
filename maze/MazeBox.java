@@ -12,23 +12,24 @@ import java.awt.Color;
  */
 public abstract class MazeBox implements Vertex {
     /**
-     * coordinate of the box in the grid. x is the line coordinate and y is the column one.
+     * Coordinates of the box in the grid. x is the line coordinate and y is the column one.
+     * The usage of a point object would have made the code more compact.
      */
     protected final int coordinateX;
     protected final int coordinateY;
 
     /**
-     * unique int given to each vertex, is equale to x * sizeOfLines + y
+     * Unique integer given to each vertex, is equale to x * sizeOfLines + y
      */
     protected final int id;
 
     /**
-     * graph the vertex represented by this object is part of
+     * Graph the vertex represented by this object is part of
      */
     protected final Maze maze;
 
     /**
-     * each box type has a different color, used in the gui!
+     * Each box type has a different color, used in the GUI
      */
     public static Color COLOR;
 
@@ -99,10 +100,11 @@ public abstract class MazeBox implements Vertex {
 
 
     /**
+     * Return a list of vertices next to the current vertex in the graph 
      * @see graph.Vertex.java
      */
     @Override
-    public List<Vertex> getNextVertices () {                            //return a list of vertices next to the current vertex in the graph  
+    public List<Vertex> getNextVertices () { 
         ArrayList<Vertex> neighborList = new ArrayList<Vertex>();
         int parity = 1;                 //deppending if the line of the box is odd or even, the neighboors are not the same
         if (coordinateX % 2 == 0)

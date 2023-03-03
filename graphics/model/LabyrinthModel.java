@@ -14,7 +14,7 @@ import graph.Vertex;
 import maze.Maze;
 
 /**
- * model of the gui, this class handle all the modifications on the data. Every request to modify, update something on the guy 
+ * Model of the GUI, this class handles every modification on the data. Every request to modify, update something on the GUI 
  * comes through this object.
  */
 public class LabyrinthModel {
@@ -23,29 +23,31 @@ public class LabyrinthModel {
      */
     private HexagonList hexagonList;
 
-
+    /**
+     * List of observers on this model (in the case only 1)
+     */
     private List<ChangeListener> listeners = new LinkedList<ChangeListener>();
 
     /**
-     * current maze
+     * Current maze
      * @see maze.Maze.java;
      */
     private Maze maze;
 
     /**
-     * current shortest path
+     * Current shortest path
      */
     private List<Vertex> path;
 
     /**
-     * current file to save to modifications to
+     * Current file to save to modifications to
      * @see graphics.menu.SaveMenuItem.java
      */
     private String currFileName;
 
     /**
-     * Dimensions of the labyrinth panel.
-     * updated every time the window is resized 
+     * Dimensions of the labyrinth panel (and not the whole window!).
+     * Updated every time the window is resized.
      */
     private Dimension windowSize;
 
@@ -53,14 +55,16 @@ public class LabyrinthModel {
      * @see graphics.content.CursorButton.java
      * @see graphics.content.EditButton.java
      */
-    private int currsorType;
+    private int cursorType;
 
-
-    public static int CURRSOR = 0;
+    /**
+     * CursorType possibles values
+     */
+    public static int CURSOR = 0;
     public static int TOGGLE_WALL = 1;
 
     public LabyrinthModel () {
-        currsorType = CURRSOR;
+        cursorType = CURSOR;
     }
 
     /* ----------------- start setters / getters ----------------- */
@@ -74,8 +78,8 @@ public class LabyrinthModel {
 
 
     /**
-     * changing the maze, when loading a maze or creating a new maze.
-     * The hexagon list has to be renewed
+     * Changing the maze, when loading a maze or creating a new maze.
+     * The hexagon list has to be renewed.
      * @param maze new maze value
      */
     public void setMaze(Maze maze) {
@@ -93,7 +97,7 @@ public class LabyrinthModel {
     } 
 
     /**
-     * triggers the displaying / removal of the path
+     * Triggers the displaying / removal of the path on the interface
      * @param path new path value
      */
     public void setPath (List<Vertex> path) {
@@ -129,14 +133,14 @@ public class LabyrinthModel {
 
     /**
      * Set to one of the to values possible (see static declarations)
-     * @param currsorType new currsor type value
+     * @param cursorType new cursor type value
      */
-    public void setCurrsorType(int currsorType) {
-        this.currsorType = currsorType;
+    public void setCursorType(int cursorType) {
+        this.cursorType = cursorType;
     }
 
     /**
-     * triggered when the window is resized, recalculating the dispaly of the hexagons to keep the grid centered
+     * Triggered when the window is resized, recalculating the dispaly of the hexagons to keep the grid centered
      * @param windowSize new window size value
      */
     public void setWindowSize(Dimension windowSize) {
@@ -150,7 +154,7 @@ public class LabyrinthModel {
     /* ----------------- end setters / getters ----------------- */
 
     /**
-     * save the current maze to a new file
+     * Saves the current maze to a new file
      * @param fileName name of the file
      * @throws Exception  handled in the window
      */
@@ -159,7 +163,7 @@ public class LabyrinthModel {
     }
 
     /**
-     * add the observers to the model, when the state changes, all the observers are notified
+     * Adds an observer to the model, when the state changes, all the observers are notified
      * @see stateChanges()
      * @param listener new observer
      */
@@ -168,8 +172,8 @@ public class LabyrinthModel {
     }
 
     /**
-     * notify every observer when the data is changed.
-     * called every time an new information needs to be displayed on the screen
+     * Notifies every observer when the data is changed.
+     * Called every time a new information needs to be displayed on the screen
      */
     public void stateChanges() {
 		ChangeEvent evt = new ChangeEvent(this);
@@ -180,14 +184,14 @@ public class LabyrinthModel {
 	}
 
     /**
-     * triggered when the user click on the screen, if the cursor is not in edit more, nothing happens
+     * Triggered when the user clicks on the screen, if the cursor is not in edit more, nothing happens
      * @see graphics.content.LabyrinthPanel.java
      * 
-     * @param p  coordinates (in pixel) of the event (mouse pressed)
+     * @param p  coordinates (in pixels) of the event (mouse pressed)
      * @return  the hexagon clicked on if any, null otherwise
      */
     public Hexagon clicked(Point p) {
-        if(!(currsorType == CURRSOR) ) {
+        if(!(cursorType == CURSOR) ) {
             Hexagon answer = hexagonList.clicked(p);
             stateChanges();
             return answer;
@@ -196,8 +200,9 @@ public class LabyrinthModel {
     }
 
     /**
-     * fromulas are not super important, set to return the optimal hexagon size given a screen size.
-     * The hexagons will be the biggest possible, leaving a border proportional to the size of the heaxagons (at least 1 in y and 2 in x)
+     * Used to get the optimal hexagon size given the screen dimensions.
+     * The hexagons will occupy the most available space on the screen, 
+     * leaving a border proportional to the size of the heaxagons (at least 1 in y and 2 in x)
      * @param windowSize current size of the window
      * @return  the optimal hexagon size
      */
@@ -212,13 +217,12 @@ public class LabyrinthModel {
     }
 
     /**
-     * calculates the optimal offset such that the grid is centered on the screen
-     * @param windowSize   current window size value (in pixel)
-     * @param labyrinthSize     size of the grid (in pixel)
-     * @param hexagonSize   size of each hexagon on the grid (in pixel)
-     * @return  the offset such that the given green in centered in the given window
+     * Calculates the optimal offset such that the grid is centered on the screen
+     * @param windowSize   current window size value (in pixels)
+     * @param labyrinthSize     size of the grid (in pixels)
+     * @return  the offset such that the given grid is centered in the window
      */
-    public Dimension getOffset(Dimension windowSize, Dimension labyrinthSize,  int hexagonSize) {
+    public Dimension getOffset(Dimension windowSize, Dimension labyrinthSize) {
         return new Dimension(
             (int) (windowSize.getWidth() - labyrinthSize.getWidth()) / 2,
             (int) (windowSize.getHeight() - labyrinthSize.getHeight()) / 2
@@ -226,10 +230,10 @@ public class LabyrinthModel {
     }
 
     /**
-     * triggered when dropping the start or end hexagon, the state is updated only if a change has 
+     * Triggered when dropping the start or end hexagon, the state is updated only if a change has 
      * been made in the data
      * @see graphics.model.HexagonList.java
-     * @param p point containting the coordinates of the dropped hexagon
+     * @param p point containting the coordinates of the location where the hexagon was dropped 
      * @param isStart   true -> the hexagon dropped it the start of the maze
      *                  false -> the hexagon dropped is the end of the maze 
      */

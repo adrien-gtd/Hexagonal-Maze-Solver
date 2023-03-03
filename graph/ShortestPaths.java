@@ -3,10 +3,8 @@ package graph;
 import java.util.List;
 
 /**
- * Classes implementing this interface are representing the shortest paths 
- * between a given vertex and some other vertices of the graph 
- * (different from the minDistance in the way that a path added is THE shortest path, 
- * no path between the two vertices is shorter)
+ * Classes implementing this interface allows to keep track of the 
+ * shortest paths created during the execution of the algorithm
  */
 public interface ShortestPaths {
 

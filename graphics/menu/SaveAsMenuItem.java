@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 /**
- * Save as menu item. Allow the user to save the current maze in a new file.
+ * Save as menu item. Allows the user to save the current maze in a new file.
  */
 @SuppressWarnings("serial")
 public class SaveAsMenuItem extends JMenuItem implements ActionListener {
@@ -27,9 +27,9 @@ public class SaveAsMenuItem extends JMenuItem implements ActionListener {
     }
 
     /**
-     * Define the acction performed when the menu is clicked on.
+     * Defines the acction performed when the menu is clicked on.
      * A file chooser pops on the screen and the user can create the 
-     * new file. The current file name in the model is updated.
+     * new file. The current file name is updated in the model.
      * @see graphics.menu.SaveMenuItem.java
      */
     @Override

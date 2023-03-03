@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Save menu item. Allow the user to save the modifications he made on the maze in one click.
+ * Save menu item. Allows the user to save the modifications he made on the maze in one click.
  */
 @SuppressWarnings("serial")
 public class SaveMenuItem extends JMenuItem implements ActionListener {
@@ -26,10 +26,11 @@ public class SaveMenuItem extends JMenuItem implements ActionListener {
     }
 
     /**
-     * Define the acction performed when the menu is clicked on.
+     * Defines the acction performed when the menu is clicked on.
      * The model contains a String named current file. If this string isn't null
      * the maze is saved at this location. Otherwise a click on this menu is redirected to
      * the saveAs menu.
+     * @see graphics.menu.SaveAsMenuItem.java
      */
     @Override  
     public void actionPerformed(ActionEvent e) {
@@ -46,6 +47,5 @@ public class SaveMenuItem extends JMenuItem implements ActionListener {
                 saveAs.doClick();
             }
         }
-        
     }
 }

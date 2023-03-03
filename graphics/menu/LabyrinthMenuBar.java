@@ -4,7 +4,7 @@ import javax.swing.* ;
 import graphics.*;
 
 /**
- * Menu bar, contains the differents menus. In this case there is only one menu 'file menu'.
+ * Menu bar, contains the different menus. In this case there is only one menu 'file menu'.
  * Not the most useful class
  */
 @SuppressWarnings("serial")

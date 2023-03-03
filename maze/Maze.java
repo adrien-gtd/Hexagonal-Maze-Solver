@@ -31,8 +31,8 @@ public final class Maze implements Graph, Distance{
 
 
     /**
-     * This construcor instantiate a new maze with the starting box on the top 
-     * left corner and the end box at the bottom right corner of the grid
+     * This constructor instantiates a new maze with the starting box on the top 
+     * left corner and the end box at the bottom right corner of the grid.
      * @param sizeX desired number of rows
      * @param sizeY desired number of columns
      */
@@ -77,11 +77,11 @@ public final class Maze implements Graph, Distance{
     /* ------------- begining getters / setters -------------*/
 
     /**
-     * get the endBox of the maze (note that the application is designed such that the user 
+     * Gets the endBox of the maze (note that the application is designed such that the user 
      * can only create a new maze or import an existing maze created originaly with the 
-     * 'empty' constructor above. Moreover in the edit mode of the gui, the end box
-     * can only be dragged and dropped but it is not possible to create an other one,
-     * thus there is only one end box in a maze object. If not, there would be the need to throw an exception
+     * 'empty' constructor above. Moreover in the edit mode of the GUI, the end box
+     * can only be dragged and dropped, but it is not possible to create another one.
+     * Thus there is only one end box in a maze object. If not, there would be the need to throw an exception
      * in the case that there is two or more end boxes)
      * @return the unique end box of the maze object 
      * @throws Exception
@@ -135,7 +135,7 @@ public final class Maze implements Graph, Distance{
     }
 
     /**
-     * get the box of the maze at the coordinates x and y
+     * Gets the box of the maze at the coordinates x and y
      * @param x x coordinate of the desired box of the maze
      * @param y y coordinate of the desired box of the maze
      * @return null if the coordinates are not valid, the deisred box otherwise
@@ -149,7 +149,7 @@ public final class Maze implements Graph, Distance{
     }
 
     /**
-     * get the box of the maze identified by the identificator id
+     * Gets the box of the maze identified by the identificator id
      * (note: overloading the getBox method!)
      * @param id identificator of the desired box of the maze
      * @return  null if id is not valid, the desired box otherwise
@@ -163,7 +163,7 @@ public final class Maze implements Graph, Distance{
     }
 
     /**
-     * get the distance between to vertex in the graph
+     * Gets the distance between two vertices in the graph
      * In this case, the distance between two vertices is always 1 if they are neighbors
      * @return 1 if the two vertices are connected, -1 otherwise
      */
@@ -194,7 +194,7 @@ public final class Maze implements Graph, Distance{
 
 
     /**
-     * check if there exists a box identified by the coordinates x and y
+     * Checks if there exists a box identified by the coordinates x and y
      * @param x x coordinate to check
      * @param y y coordiante to check
      * @return  true if x, y is a box in the maze, false otherwise
@@ -207,14 +207,14 @@ public final class Maze implements Graph, Distance{
     }
 
     /**
-     * Initialize a maze object with the file name passed as a parameter.
-     * Check if the file exists, if there is no error opening it, reading it,
+     * Initializes a maze object with the file name passed as a parameter.
+     * Checks if the file exists, if there is no error opening it, reading it,
      * as well as the encoding of the maze 
      * @param fileName  name of the file containing the encoded maze
-     * @throws Exception    two different exceptions can occure during the execution of the method
-     *                      they or both handled by throwing an exception of type Exception with a 
-     *                      cutsome message that will be handled higher in the program.
-     *                      (It is not the optimal way to handle exceptions and on a bigger scale project
+     * @throws Exception    two different exceptions can occure during the execution of the method.
+     *                      They are both handled by throwing an exception of type Exception with a 
+     *                      custom message that will be handled higher in the program.
+     *                      (It is not an optimal way to handle exceptions and on a bigger scale project
      *                      it would be a problem. In this case it works just fine and it makes the exceptions 
      *                      very simple to handle!)
      */
@@ -266,10 +266,10 @@ public final class Maze implements Graph, Distance{
     }
 
     /**
-     * Save the current maze object to a file
+     * Saves the current maze object to a file
      * @param fileName  name of the file the maze should be saved at 
      * @throws Exception    an error can occure when opening / writing on the file
-     *                      the eroor is handled the same way as in initFromTextFile()
+     *                      the error is handled the same way as in initFromTextFile()
      */
     public final void saveToTextFile(String fileName) throws Exception {
         try {
@@ -295,8 +295,8 @@ public final class Maze implements Graph, Distance{
 
 
     /**
-     * private function used in the two methods below transform an id into a point
-     * object containting the corresponding x, y coordiantes
+     * private function used in the two methods below transforms an id into a point
+     * object containting the corresponding x, y coordinates
      * @param id id coordinate to transform
      * @return point containing the x, y coordinates
      */
@@ -309,13 +309,13 @@ public final class Maze implements Graph, Distance{
 
 
     /**
-     * Change a given box. If the box is a wall, 
+     * Changes a given box. If the box is a wall, 
      * it is changed to an empty box and same for the opposite case.
-     * This method is used to modify the maze and update the gui.
+     * This method is used to modify the maze and update the GUI.
      * @param id    id of the box to change
-     * @param isEmpty   contains true id the given box is empty and false other wise
+     * @param isEmpty   contains true id the given box is empty and false otherwise
      *                  (same as getBox(id).isEmpty())
-     * @return  new color of the box. Used to update the gui
+     * @return  new color of the box. Used to update the GUI
      */
     public Color toggleWallBox(int id, boolean isEmpty) {
         Point coord = idToXY(id);
@@ -329,8 +329,8 @@ public final class Maze implements Graph, Distance{
     }   
 
     /**
-     * This method swap the type of two boxes identified by the ids id1 and id2.
-     * It is used for the drag and drop of the boxes start box and end box in th gui.
+     * This method swaps the type of the two boxes identified by the identificators id1 and id2.
+     * It is used for the drag and drop of the start / end box in th GUI.
      * @param id1 id of the first box
      * @param id2 id of the second box
      */
@@ -348,7 +348,7 @@ public final class Maze implements Graph, Distance{
 
 
     /**
-     * private method used for the method swapBoxes. Creates a box of the same type as the box 
+     * Private method used for the method swapBoxes(). Creates a box of the same type as the box 
      * passed as the first parameter at the coordinates of the second one
      * @param toCopy   box of the type needed for the new one
      * @param newBoxCoord   coordinates of the box to replace

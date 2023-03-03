@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 /**
- * 'Load' menu item, Allow the user to import a maze saved as a .maze file to the app
+ * 'Load' menu item, allows the user to import a maze saved as a .maze file to the app
  */
 @SuppressWarnings("serial")
 public class LoadMenuItem extends JMenuItem implements ActionListener {
@@ -27,9 +27,9 @@ public class LoadMenuItem extends JMenuItem implements ActionListener {
     }
 
     /**
-     * Define the acction performed when the menu is clicked on.
-     * Very basic file chooser object. Allows the user to choose the .maze file 
-     * he wants to import.
+     * Defines the acction performed when the menu is clicked on.
+     * A basic file chooser object pops and allows users to choose the 
+     * .maze file they want to import.
      * The current file is updated. 
      * @see graphics.menu.SaveMenuItem.java
      */

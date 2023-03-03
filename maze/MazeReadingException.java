@@ -1,5 +1,8 @@
 package maze;
 
+/**
+ * Exception used when reading a '.maze' file. Useful to get information on where the error happened.
+ */
 @SuppressWarnings("serial")
 public class MazeReadingException extends Exception{
     private final String name;

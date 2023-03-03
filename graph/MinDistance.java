@@ -22,7 +22,7 @@ public interface MinDistance {
     /**
      * Get the next pivot for the dijsktrat algorithm (used to remove some code from the dijkstra class)
      * @param pivot current pivot
-     * @param processedVertexes objext containing the processed vertices at the current state of the algorithm
+     * @param processedVertexes object containing the processed vertices at the current state of the algorithm
      * @param graph graph the algorithm is used on
      * @return  the next pivot for the algorithm
      */

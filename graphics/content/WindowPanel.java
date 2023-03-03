@@ -5,7 +5,7 @@ import java.awt.*;
 import graphics.*;
 
 /**
- * JPanel containging the main body of the window. It contains the button and the maze grid.
+ * JPanel containing the main body of the window. It contains the button and the maze grid.
  */
 @SuppressWarnings("serial")
 public class WindowPanel extends JPanel {
@@ -21,7 +21,7 @@ public class WindowPanel extends JPanel {
     }
 
     /**
-     * Transmit the update signal to the other panel.
+     * Transmits the update signal to the other panel.
      */
     public void update() {
         labyrinthPanel.update();

@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Quit menu item, offer the user an other way to quit the application.
+ * Quit menu item, offers the user an other way to quit the application.
  */
 @SuppressWarnings("serial")
 public class QuitMenuItem extends JMenuItem implements ActionListener {
@@ -16,8 +16,8 @@ public class QuitMenuItem extends JMenuItem implements ActionListener {
    }
 
    /**
-    * Define the acction performed when the menu is clicked on.
-    * Quit the program.
+    * Defines the acction performed when the menu is clicked on.
+    * Quits the program.
     */
    @Override
    public void actionPerformed(ActionEvent e) {

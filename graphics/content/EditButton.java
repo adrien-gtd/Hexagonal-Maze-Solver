@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 
 /**
- * Allow the user to modify the maze on the screen.
+ * Button changing the cursor type to edit mode: allows the user to modify the maze by clicking on the frame.
  */
 @SuppressWarnings("serial")
 public class EditButton extends JButton implements ActionListener {
@@ -28,7 +28,7 @@ public class EditButton extends JButton implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        model.setCurrsorType(LabyrinthModel.TOGGLE_WALL);
+        model.setCursorType(LabyrinthModel.TOGGLE_WALL);
     }
 }
 

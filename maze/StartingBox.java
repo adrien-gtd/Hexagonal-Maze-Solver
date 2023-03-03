@@ -3,8 +3,8 @@ package maze;
 import java.awt.Color;
 
 /**
- * In the maze, the starting box represents an empty box. 
- * The prgram is used to find the shortest path between this box and the end box.
+ * In the maze, the starting box is also considered as an empty box. 
+ * The program is used to find the shortest path between this box and the end box.
  * @see maze.MazeBox.java for informations on the methods.
  */
 public final class StartingBox extends EmptyBox {

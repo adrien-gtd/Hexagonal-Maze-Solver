@@ -11,7 +11,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 /**
- * This panel controls the diplaying of the maze grid. No data is manipulated here, only the annimations and the
+ * This panel controls the diplaying of the maze grid. 
+ * No data is manipulated here, only the animations and the
  * display of the data realated to the maze grid is handled here.
  */
 @SuppressWarnings("serial")
@@ -34,12 +35,16 @@ public class LabyrinthPanel extends JPanel implements MouseInputListener, Compon
         addComponentListener(this);
     }
 
+    /**
+     * This method is called when the model requests to update the interface.
+     */
     public void update() {
         repaint();
     }
 
     /**
-     * This method is called evry time the data chages in the model (new maze, new path, ...)
+     * This method is called every time the update method is called (see above)
+     * It implies its execution every time the data chages in the model (new maze, new path, ...)
      * But also on certain events (dragging a box, resizing the window, ..)
      * Implemented to correctly display the current state of the maze. 
      */
@@ -70,7 +75,7 @@ public class LabyrinthPanel extends JPanel implements MouseInputListener, Compon
     }
 
     /**
-     * This method when called, draw the current ask to the model the current maze and draws it on the screen
+     * When called, this method gets the current grid from the model and draws it on the interface.
      */
     private void drawGrid(Graphics graphics) {
         for(Hexagon hexagon : model.getHexagonList().getList())
@@ -91,10 +96,10 @@ public class LabyrinthPanel extends JPanel implements MouseInputListener, Compon
     }
 
     /**
-     * On the press of a click, there are three possiblity:
+     * On the press of a click, there are three possiblities:
      * -the user clicked on a empty / wall box -> handled by the model (changing the type)
      * -the user did not clicked on any box -> nothing
-     * -the user click on the start / end box -> starting the drag annimation
+     * -the user click on the start / end box -> starting the drag animation
      */
     @Override
     public void mousePressed(MouseEvent e) {
@@ -111,9 +116,10 @@ public class LabyrinthPanel extends JPanel implements MouseInputListener, Compon
     }
 
     /**
-     * When the user realsed the button, if he was not dragging the end or strat box, 
-     * nothing happenes. If he was, the model handles the modifications if necessary.
-     * End of the dragging annimantion.
+     * When the user releases the mouse, two possibilities :
+     * -If he was not dragging the end / start box -> nothing happenes. 
+     * -If he was dragging the end / start box -> the model handles the modifications if necessary.
+     * End of the dragging animantion.
      */
     @Override
     public void mouseReleased(MouseEvent e) {
@@ -146,9 +152,9 @@ public class LabyrinthPanel extends JPanel implements MouseInputListener, Compon
 
 
     /**
-     * When the window is resezed, the model is notified. 
+     * When the window is resized, the model is notified. 
      * Used to center the maze and update the size of the 
-     * boxes to take the most space possible on the screen.
+     * boxes to take most of the available space on the screen.
      */
     @Override
     public void componentResized(ComponentEvent e) {

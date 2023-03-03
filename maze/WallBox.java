@@ -3,7 +3,7 @@ package maze;
 import java.awt.Color;
 
 /**
- * In the maze, a wall box is a box representing a wall in the labyrinth. *gasp*
+ * In the maze, a wall box is a box representing a wall in the maze. *gasp*
  * @see maze.MazeBox.java for informations on the methods.
  */
 public final class WallBox extends MazeBox {

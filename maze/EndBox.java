@@ -3,8 +3,8 @@ package maze;
 import java.awt.Color;
 
 /**
- * In the maze, the end box represents an empty box. 
- * The prgram is used to find the shortest path between the starting box and this one.
+ * In the maze, the end box is considered as an empty box. 
+ * The program is used to find the shortest path between the starting box and this one.
  * @see maze.MazeBox.java for informations on the methods.
  */
 public final class EndBox extends EmptyBox {

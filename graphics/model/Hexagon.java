@@ -12,29 +12,29 @@ import maze.EmptyBox;
 public class Hexagon {
 
     /**
-     * Colors used to display the path or remove the path
+     * Colors used to display the path or remove the path from the GUI
      */
     private final Color pathColor = Color.CYAN;
     private final Color emptyColor = EmptyBox.COLOR;
 
     /**
-     * Coordinate (in pixels) of the center of the hexagon
+     * Coordinates (in pixels) of the center of the hexagon
      */
     private int x;
     private int y;
 
     /**
-     * size of a side of the hexagon (or of a diagonal)
+     * Size of a side of the hexagon (or of a diagonal)
      */
     private final int size;
 
     /**
-     * class containing the coordonates of each vertices of the hexagon (in pixel)
+     * Class containing the coordinates of each vertices of the hexagon (in pixels)
      */
     private final Polygon polygon;
 
     /**
-     * current color of the hexagon
+     * Current color of the hexagon
      */
     private Color color;
 
@@ -55,9 +55,9 @@ public class Hexagon {
     }
 
     /**
-     * private method used for the contructor above. 
+     * Private method used for the contructor above. 
      * @return  the polygon containing the coordinates of the vertices
-     * of the hexagon (in pixel).
+     * of the hexagon (in pixels).
      */
     private Polygon createHexagon() {
         Polygon polygon = new Polygon();
@@ -83,7 +83,7 @@ public class Hexagon {
 
     /**
      * 
-     * @return x coordinate of the center (in pixel)
+     * @return x coordinate of the center (in pixels)
      */
     public int getX(){
         return x;
@@ -91,7 +91,7 @@ public class Hexagon {
 
     /**
      * 
-     * @return y coordinate of the center (in pixel)
+     * @return y coordinate of the center (in pixels)
      */
     public int getY() {
         return y;
@@ -99,7 +99,7 @@ public class Hexagon {
 
     /**
      * 
-     * @return size of the hexagon
+     * @return size of the hexagon (in pixels)
      */
     public int getSize() {
         return size;
@@ -124,7 +124,7 @@ public class Hexagon {
 
 
     /**
-     * used to add the path to the maze
+     * Used to add the path to the maze
      */
     public void setPathColor () {
         if (color == emptyColor)
@@ -132,7 +132,7 @@ public class Hexagon {
     }
 
     /**
-     * used to remove the path from the maze
+     * Used to remove the path from the maze
      */
     public void resetPathColor () {
         if(color == pathColor) 
@@ -140,7 +140,7 @@ public class Hexagon {
     }
 
     /**
-     * Uesed to determine if an hexagon is representing the starting box of the maze
+     * Used to determine if an hexagon is representing the starting box of the maze
      * @return  true if this hexagon is a representing the starting box
      *          false otherwise
      */
@@ -149,8 +149,8 @@ public class Hexagon {
     }
 
     /**
-     * Uesed to determine if an hexagon is representing the ending box of the maze
-     * @return  true if this hexagon is a representing the ending box
+     * Used to determine if an hexagon is representing the end box of the maze
+     * @return  true if this hexagon is a representing the end box
      *          false otherwise
      */
     public boolean isEnd() {
@@ -160,7 +160,7 @@ public class Hexagon {
     /**
      * Used for generating the hexagon list 
      * @see graphics.model.HexagonList.java
-     * Offset the current hexagon by the dimension passed as a parameter
+     * Offset the current hexagon by the dimensions passed as parameters
      * @param offset offset to apply on the hexagon
      */
     public void applyOffset(Dimension offset) {

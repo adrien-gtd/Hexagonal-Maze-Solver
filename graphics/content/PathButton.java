@@ -26,7 +26,7 @@ public class PathButton extends JButton implements ActionListener {
     }
 
     /**
-     * Define the acction performed when the button is clicked on.
+     * Defines the acction performed when the button is clicked on.
      * Triggers the calculation of the shortest path in the maze 
      * if the path is not already displayed. If it is, a click will
      * hide the path.
