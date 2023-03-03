@@ -1,8 +1,13 @@
 package maze;
 
 import java.awt.Color;
+
+/**
+ * In the maze, an empty box represents a box wich is not a wall.
+ * @see maze.MazeBox.java for informations on the methods.
+ */
 public class EmptyBox extends MazeBox{
-    public static final Color color = Color.GRAY;
+    public static final Color COLOR = Color.GRAY;
 
     public EmptyBox (int x, int y, Maze maze) {
         super(x, y, maze);
@@ -36,6 +41,6 @@ public class EmptyBox extends MazeBox{
 
     @Override
     public Color getColor() {
-        return color;
+        return COLOR;
     }
 }

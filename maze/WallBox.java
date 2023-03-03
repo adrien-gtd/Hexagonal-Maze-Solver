@@ -2,8 +2,12 @@ package maze;
 
 import java.awt.Color;
 
+/**
+ * In the maze, a wall box is a box representing a wall in the labyrinth. *gasp*
+ * @see maze.MazeBox.java for informations on the methods.
+ */
 public final class WallBox extends MazeBox {
-    public static final Color color = Color.BLACK;
+    public static final Color COLOR = Color.BLACK;
 
     public WallBox (int x, int y, Maze maze) {
         super(x,y, maze);
@@ -35,6 +39,6 @@ public final class WallBox extends MazeBox {
 
     @Override
     public Color getColor() {
-        return color;
+        return COLOR;
     }
 }

@@ -2,8 +2,13 @@ package maze;
 
 import java.awt.Color;
 
+/**
+ * In the maze, the end box represents an empty box. 
+ * The prgram is used to find the shortest path between the starting box and this one.
+ * @see maze.MazeBox.java for informations on the methods.
+ */
 public final class EndBox extends EmptyBox {
-    public static final Color color = Color.RED;
+    public static final Color COLOR = Color.RED;
 
     public EndBox (int x, int y, Maze maze) {
         super (x, y, maze);
@@ -31,6 +36,6 @@ public final class EndBox extends EmptyBox {
 
     @Override
     public Color getColor() {
-        return color;
+        return COLOR;
     }
 }
