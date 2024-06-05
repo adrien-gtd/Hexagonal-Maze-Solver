@@ -23,8 +23,8 @@ public class EditButton extends JButton implements ActionListener {
     }
 
     /**
-     * Define the acction performed when the menu is clicked on.
-     * The value changed controls the eddition of the maze.
+     * Define the action performed when the menu is clicked on.
+     * The value changed controls the edition of the maze.
      */
     @Override
     public void actionPerformed(ActionEvent e) {
